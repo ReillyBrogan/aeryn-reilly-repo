@@ -1,0 +1,36 @@
+#
+# SPDX-FileCopyrightText: © 2020-2024 Serpent OS Developers
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+name        : vesktop
+version     : 1.5.8
+release     : 1
+summary     : Vesktop
+license     : Distributable
+homepage    : https://vesktop.vencord.dev
+upstreams   :
+    - https://vencord.dev/download/vesktop/amd64/tar:
+        hash: c2ed2184da586c575f3dbf14afc41a85760693586b079b3d2b0ba8f181cd3d51
+description : |
+    Vesktop
+builddeps   :
+    - binary(ar)
+    - binary(bsdtar-static)
+    - binary(ln)
+rundeps     :
+    - binary(xdg-open)
+    - binary(python3)
+    - soname(libXss.so.1(x86_64))
+    - soname(libatomic.so.1(x86_64))
+# Causes krisp noise suppression not to load
+debug       : false
+strip       : false
+install     : |
+    %install_file %(pkgdir)/vesktop.desktop %(installroot)/usr/share/applications/vesktop.desktop
+    %install_file %(pkgdir)/vesktop.png %(installroot)/usr/share/icons/hicolor/512x512/apps/vesktop.png
+
+    # Binary
+    %install_dir %(installroot)/usr/lib/vesktop
+    cp -Ra * %(installroot)/usr/lib/vesktop/
+    %install_exe %(pkgdir)/vesktop.sh %(installroot)/usr/bin/vesktop
