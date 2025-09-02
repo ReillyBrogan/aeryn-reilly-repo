@@ -1,0 +1,33 @@
+/** Human readable report. This is not consumed by boulder */
+{
+	"manifest-version": "0.2",
+	"packages": {
+		"webcatalog-bin": {
+			"build-depends": [
+				"binary(patch)",
+				"soname(libfuse.so.2(x86_64))"
+			],
+			"depends": [
+				"interpreter(/lib64/ld-linux-x86-64.so.2(x86_64))",
+				"soname(libc.so.6(x86_64))",
+				"soname(libdl.so.2(x86_64))",
+				"soname(libfuse.so.2(x86_64))",
+				"soname(libpthread.so.0(x86_64))",
+				"soname(libz.so.1(x86_64))"
+			],
+			"files": [
+				"/usr/bin/webcatalog",
+				"/usr/lib/appimages/WebCatalog.appimage",
+				"/usr/share/applications/webcatalog.desktop",
+				"/usr/share/icons/hicolor/1024x1024/apps/@webcatalogdesktop.png"
+			],
+			"name": "webcatalog-bin",
+			"provides": [
+				"binary(webcatalog)"
+			]
+		}
+	},
+	"source-name": "webcatalog-bin",
+	"source-release": "1",
+	"source-version": "68.7.0"
+}

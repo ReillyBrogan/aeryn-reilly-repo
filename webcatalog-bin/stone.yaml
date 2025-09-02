@@ -1,0 +1,39 @@
+#
+# SPDX-FileCopyrightText: © 2020-2024 Serpent OS Developers
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+name        : webcatalog-bin
+version     : 68.7.0
+release     : 1
+summary     : webcatalog
+license     : Distributable
+homepage    : https://webcatalog.io/en/desktop
+upstreams   :
+    - https://cdn-2.webcatalog.io/webcatalog/WebCatalog-68.7.0.AppImage:
+        hash: 432198355855cfea58b6597e84398df9f93666aefba3be2b6f99126c59ff7518
+        unpack: false
+        rename: WebCatalog
+description : |
+    webcatalog
+builddeps   :
+    - binary(patch)
+    - soname(libfuse.so.2(x86_64))
+rundeps     :
+    - soname(libfuse.so.2(x86_64))
+# Causes krisp noise suppression not to load
+debug       : false
+strip       : false
+setup       : |
+    chmod +x %(sourcedir)/WebCatalog
+    %(sourcedir)/WebCatalog --appimage-extract
+install     : |
+    %install_exe %(sourcedir)/WebCatalog %(installroot)%(libdir)/appimages/WebCatalog.appimage
+    %install_dir %(installroot)%(bindir)
+    ln -srv %(installroot)%(libdir)/appimages/WebCatalog.appimage %(installroot)%(bindir)/webcatalog
+
+    %install_dir %(installroot)%(datadir)/applications
+    cp -r --no-preserve=mode,ownership squashfs-root/usr/share/icons %(installroot)%(datadir)
+    cp -r --no-preserve=mode,ownership squashfs-root/@webcatalogdesktop.desktop %(installroot)%(datadir)/applications/webcatalog.desktop
+    patch -d "%(installroot)" -p1 < "%(pkgdir)/webcatalog.patch"
+    rm %(installroot)%(datadir)/applications/webcatalog.desktop.orig
