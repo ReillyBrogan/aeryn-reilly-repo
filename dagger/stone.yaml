@@ -1,0 +1,51 @@
+#
+# SPDX-FileCopyrightText: © 2020-2025 Serpent OS Developers
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+name        : dagger
+version     : 0.19.6
+release     : 1
+homepage    : https://dagger.io/
+upstreams   :
+    - https://github.com/dagger/dagger/archive/refs/tags/v0.19.6.tar.gz : 117ae4f51d1c6699dfd5bf404ffcc1078daec50dd637a1a7aea55c3ed8f30fa4
+summary     : A portable devkit for CI/CD pipelines
+description : |
+    A portable devkit for CI/CD pipelines
+license     : Apache-2.0
+networking  : yes
+builddeps   :
+    - binary(go)
+setup       : |
+    go mod vendor
+build      : |
+    # set Go flags
+    export CGO_CFLAGS="${CFLAGS}"
+    export CGO_CPPFLAGS="${CPPFLAGS}"
+    export CGO_CXXFLAGS="${CXXFLAGS}"
+
+    mkdir build
+
+    go build -v \
+        -buildmode=pie \
+        -mod=readonly \
+        -modcacherw \
+        -ldflags "-compressdwarf=false \
+        -linkmode external \
+        -extldflags '${LDFLAGS}' \
+        -X github.com/dagger/dagger/engine.Version=v%(version) \
+        -X github.com/dagger/dagger/engine.Tag=v%(version)" \
+        -o build \
+        ./cmd/...
+
+    # Generate completions
+    mkdir completions
+    ./build/dagger completion bash > completions/dagger
+    ./build/dagger completion zsh > completions/_dagger
+    ./build/dagger completion fish > completions/dagger.fish
+install    : |
+    %install_exe build/dagger -t %(installroot)%(bindir)
+
+    %install_file completions/dagger -t %(installroot)%(bashcompletionsdir)
+    %install_file completions/_dagger -t %(installroot)%(zshcompletionsdir)
+    %install_file completions/dagger.fish -t %(installroot)%(fishcompletionsdir)
