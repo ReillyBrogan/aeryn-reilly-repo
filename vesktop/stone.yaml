@@ -4,14 +4,14 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : vesktop
-version     : 1.5.8
+version     : 1.6.1
 release     : 1
 summary     : Vesktop
 license     : Distributable
 homepage    : https://vesktop.vencord.dev
 upstreams   :
     - https://vencord.dev/download/vesktop/amd64/tar:
-        hash: c2ed2184da586c575f3dbf14afc41a85760693586b079b3d2b0ba8f181cd3d51
+        hash: c78489c89caad16ba64c082c1c1095a45b66bc84bb437bda7f7d27c91c6d9907
 description : |
     Vesktop
 builddeps   :
@@ -28,7 +28,7 @@ debug       : false
 strip       : false
 install     : |
     %install_file %(pkgdir)/vesktop.desktop %(installroot)/usr/share/applications/vesktop.desktop
-    %install_file %(pkgdir)/vesktop.png %(installroot)/usr/share/icons/hicolor/512x512/apps/vesktop.png
+    %install_file %(pkgdir)/vesktop.svg %(installroot)/usr/share/icons/hicolor/scalable/apps/vesktop.svg
 
     # Binary
     %install_dir %(installroot)/usr/lib/vesktop

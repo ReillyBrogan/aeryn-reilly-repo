@@ -125,7 +125,7 @@
 				"/usr/lib/vesktop/vesktop",
 				"/usr/lib/vesktop/vk_swiftshader_icd.json",
 				"/usr/share/applications/vesktop.desktop",
-				"/usr/share/icons/hicolor/512x512/apps/vesktop.png"
+				"/usr/share/icons/hicolor/scalable/apps/vesktop.svg"
 			],
 			"name": "vesktop",
 			"provides": [
@@ -140,5 +140,5 @@
 	},
 	"source-name": "vesktop",
 	"source-release": "1",
-	"source-version": "1.5.8"
+	"source-version": "1.6.1"
 }
