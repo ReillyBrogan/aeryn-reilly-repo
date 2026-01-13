@@ -1,0 +1,37 @@
+#
+# SPDX-FileCopyrightText: © 2020-2024 Serpent OS Developers
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+name        : gitkraken
+version     : 11.7.0
+release     : 1
+summary     : gitkraken
+license     : Distributable
+homepage    : https://www.gitkraken.com
+upstreams   :
+    - https://release.gitkraken.dev/gkd/production/normal/linux/x64/11.7.0/36eSLm3ge8Dqk3msg0VraOfsTBd/gitkraken-amd64.tar.gz:
+        hash: ea48c45d32592818600a2fbb07359c5da3bd62439f91951d271f9613daa56ad8
+description : |
+    gitkraken
+builddeps   :
+    # - binary(ar)
+    - binary(bsdtar-static)
+    - binary(ln)
+rundeps     :
+    - binary(xdg-open)
+    - binary(python3)
+    - soname(libXss.so.1(x86_64))
+    - soname(libatomic.so.1(x86_64))
+rundeps-exclude:
+    - 'soname\(libc\.so\(.*\)\)'
+debug       : false
+strip       : false
+install     : |
+    %install_file %(pkgdir)/*.desktop -t %(installroot)/usr/share/applications/
+    %install_file %(pkgdir)/gitkraken.png %(installroot)/usr/share/icons/hicolor/512x512/apps/gitkraken.png
+
+    # Binary
+    %install_dir %(installroot)/usr/lib/gitkraken
+    cp -Ra * %(installroot)/usr/lib/gitkraken/
+    %install_exe %(pkgdir)/gitkraken.sh %(installroot)/usr/bin/gitkraken
