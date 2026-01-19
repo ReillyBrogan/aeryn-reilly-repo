@@ -1,0 +1,60 @@
+#
+# SPDX-FileCopyrightText: © 2020-2024 Serpent OS Developers
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+name        : mailspring
+version     : 1.17.1
+release     : 1
+summary     : Mailspring
+license     : GPL-3.0-only
+homepage    : https://github.com/Foundry376/Mailspring
+upstreams   :
+    - git|https://github.com/Foundry376/Mailspring.git: dd5b3e5605e987bc613f8efe1dbdb9c49e867c4a
+description : |
+    Mailspring email client
+networking  : true
+builddeps   :
+    - binary(make)
+    - binary(nm)
+    - binary(npm)
+    - binary(python3)
+rundeps     :
+    - libtidy
+setup       : |
+    %patch %(pkgdir)/0001-No-deb-rpm.patch
+    %patch %(pkgdir)/0001-test.patch
+
+    # This forces the download of mailsync
+    # TODO BUILD THIS MANUALLY
+    rm -rf mailsync
+
+    npm install
+build       : |
+    npm run-script build
+
+    # Remove not needed dep on libdb
+    rm -v app/dist/mailspring-linux-x64/resources/app.asar.unpacked/libsasldb.so*
+install     : |
+    mailspringdir=%(libdir)/%(name)
+
+    %install_dir %(installroot)$mailspringdir
+    cp -a app/dist/mailspring-linux-x64/* %(installroot)$mailspringdir
+
+    %install_dir %(installroot)%(bindir)
+    ln -srv %(installroot)$mailspringdir/mailspring %(installroot)%(bindir)/mailspring
+
+    for i in "Mailspring.desktop" "mailspring.appdata.xml"; do
+        sed -e "s|<%%= productName %%>|Mailspring|g" \
+            -e "s|<%%= name %%>|mailspring|g" \
+            -e "s|<%%= description %%>|The best email app for people and teams at work|g" \
+            app/build/resources/linux/${i}.in > ./$i
+    done
+
+    %install_file Mailspring.desktop -t %(installroot)/usr/share/applications/
+    %install_file mailspring.appdata.xml -t %(installroot)/usr/share/metainfo/
+
+    for i in 16 32 64 128 256 512; do
+        %install_dir %(installroot)/%(datadir)/icons/hicolor/${i}x${i}/apps
+        %install_file app/build/resources/linux/icons/${i}.png %(installroot)/%(datadir)/icons/hicolor/${i}x${i}/apps/mailspring.png
+    done

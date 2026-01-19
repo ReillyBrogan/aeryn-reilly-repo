@@ -1,0 +1,44 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Reilly Brogan <reilly@reillybrogan.com>
+Date: Mon, 19 Jan 2026 14:17:16 -0600
+Subject: [PATCH] test
+
+---
+ app/src/browser/main.js | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/app/src/browser/main.js b/app/src/browser/main.js
+index 6fc721a69..0a63c62df 100644
+--- a/app/src/browser/main.js
++++ b/app/src/browser/main.js
+@@ -4,7 +4,7 @@ global.shellStartTime = Date.now();
+ const util = require('util');
+ 
+ const fs = require('fs');
+-fs.statSyncNoException = function(...args) {
++fs.statSyncNoException = function (...args) {
+   try {
+     return fs.statSync.apply(fs, args);
+   } catch (e) {
+@@ -293,9 +293,9 @@ const start = () => {
+   // gets a unique ID. Without this, all Electron apps share the same
+   // StatusNotifierItem ID on Linux, causing their tray visibility settings
+   // to be synchronized. See: https://github.com/electron/electron/issues/40936
+-  if (process.platform === 'linux') {
+-    app.setName('Mailspring');
+-  }
++  // if (process.platform === 'linux') {
++  //   app.setName('Mailspring');
++  // }
+ 
+   if (handleStartupEventWithSquirrel()) {
+     return;
+@@ -314,7 +314,7 @@ const start = () => {
+       // Register mailto: protocol without elevation or setting as default
+       WindowsUpdater.createRegistryEntries(
+         { allowEscalation: false, registerDefaultIfPossible: false },
+-        () => {}
++        () => { }
+       );
+     }
+   }
