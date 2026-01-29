@@ -1,0 +1,37 @@
+#
+# SPDX-FileCopyrightText: © 2020-2024 Serpent OS Developers
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+name        : slack-desktop
+version     : 4.47.69
+release     : 1
+summary     : Slack
+license     : custom
+homepage    : https://slack.com
+upstreams   :
+    - https://downloads.slack-edge.com/desktop-releases/linux/x64/4.47.69/slack-desktop-4.47.69-amd64.deb:
+        hash: 7bd5e3079ea968e765dcbb8872941d98f3ae1b953a3ebd947c98ef34e9906ba5
+        unpack: false
+        rename: slack-desktop.deb
+description : |
+    Slack
+builddeps   :
+    - binary(bsdtar-static)
+rundeps     :
+    - libnotify
+install     : |
+    %install_dir %(installroot)
+    bsdtar-static -O -xf %(sourcedir)/slack-desktop.deb data.tar.xz | bsdtar-static -C "%(installroot)" -xJf -
+
+    # Fix permissions
+    find %(installroot) -type d -exec chmod 755 {} +
+
+    # Fix icon
+    %install_dir %(installroot)%(datadir)/icons/hicolor/512x512/apps/
+    mv %(installroot)%(datadir)/pixmaps/slack.png %(installroot)%(datadir)/icons/hicolor/512x512/apps/
+    rmdir %(installroot)%(datadir)/pixmaps
+    sed -i "s|Icon=/usr/share/pixmaps/slack.png|Icon=slack|g" %(installroot)%(datadir)/applications/slack.desktop
+
+    # Fix wayland
+    mv %(installroot)%(datadir)/applications/{slack,Slack}.desktop
