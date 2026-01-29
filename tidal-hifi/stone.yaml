@@ -1,0 +1,45 @@
+#
+# SPDX-FileCopyrightText: © 2020-2024 Serpent OS Developers
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+name        : tidal-hifi
+version     : 6.1.0
+release     : 1
+summary     : tidal
+license     : MIT
+homepage    : https://github.com/Mastermindzh/tidal-hifi
+upstreams   :
+    - https://github.com/Mastermindzh/tidal-hifi/archive/refs/tags/6.1.0.tar.gz: 21eaf5d3d15f2af43f024ee24467c60b761585eb7c5c002d7c43634f494247dc
+description : |
+    tidal
+networking  : true
+builddeps   :
+    - binary(make)
+    # - binary(nm)
+    - binary(npm)
+    - binary(python3)
+rundeps     :
+    - libnotify
+setup       : |
+    npm install
+build       : |
+    npm run build-unpacked
+install     : |
+    tidaldir=%(libdir)/%(name)
+
+    %install_dir %(installroot)$tidaldir
+    cp -a dist/linux-unpacked/* %(installroot)$tidaldir
+
+    # Kill dep on musl
+    rm -rfv %(installroot)$tidaldir/resources/app.asar.unpacked/node_modules/@parcel/watcher-linux-x64-musl/
+
+    %install_dir %(installroot)%(bindir)
+    ln -srv %(installroot)$tidaldir/tidal-hifi %(installroot)%(bindir)/tidal-hifi
+
+    %install_file %(pkgdir)/*.desktop -t %(installroot)/usr/share/applications/
+
+    for i in 16 32 64 128 256; do
+        %install_dir %(installroot)/%(datadir)/icons/hicolor/${i}x${i}/apps
+        %install_file assets/icons/${i}x${i}.png %(installroot)/%(datadir)/icons/hicolor/${i}x${i}/apps/tidal-hifi.png
+    done
