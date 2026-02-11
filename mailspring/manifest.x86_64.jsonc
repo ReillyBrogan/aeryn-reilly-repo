@@ -154,9 +154,6 @@
 				"/usr/lib/mailspring/resources/app.asar.unpacked/mailsync",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/mailsync.bin",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/node_modules/better-sqlite3/build/Release/better_sqlite3.node",
-				"/usr/lib/mailspring/resources/app.asar.unpacked/node_modules/better-sqlite3/build/Release/obj.target/better_sqlite3.node",
-				"/usr/lib/mailspring/resources/app.asar.unpacked/node_modules/better-sqlite3/build/Release/obj.target/test_extension.node",
-				"/usr/lib/mailspring/resources/app.asar.unpacked/node_modules/better-sqlite3/build/Release/test_extension.node",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/node_modules/emoji-data/vendor/emoji-data/emoji.json",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/node_modules/jszip/vendor/FileSaver.js",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/node_modules/macos-notification-state/build/Release/focuscenter.node",
@@ -581,6 +578,6 @@
 		}
 	},
 	"source-name": "mailspring",
-	"source-release": "2",
-	"source-version": "1.17.2"
+	"source-release": "3",
+	"source-version": "1.17.4"
 }

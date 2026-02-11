@@ -4,13 +4,13 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : mailspring
-version     : 1.17.2
-release     : 2
+version     : 1.17.4
+release     : 3
 summary     : Mailspring
 license     : GPL-3.0-only
 homepage    : https://github.com/Foundry376/Mailspring
 upstreams   :
-    - git|https://github.com/Foundry376/Mailspring.git: a312df897663a4595b5fc23a1fbe0baec61fa502
+    - git|https://github.com/Foundry376/Mailspring.git: 92e9fe283e63782da4882bfaa427534614d863c8
 description : |
     Mailspring email client
 networking  : true
@@ -23,7 +23,6 @@ rundeps     :
     - libtidy
 setup       : |
     %patch %(pkgdir)/0001-No-deb-rpm.patch
-    %patch %(pkgdir)/0001-test.patch
 
     # This forces the download of mailsync
     # TODO BUILD THIS MANUALLY
