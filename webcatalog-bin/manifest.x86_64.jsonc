@@ -4,6 +4,7 @@
 	"packages": {
 		"webcatalog-bin": {
 			"build-depends": [
+				"binary(mogrify)",
 				"binary(patch)",
 				"soname(libfuse.so.2(x86_64))"
 			],
@@ -19,7 +20,8 @@
 				"/usr/bin/webcatalog",
 				"/usr/lib/appimages/WebCatalog.appimage",
 				"/usr/share/applications/webcatalog.desktop",
-				"/usr/share/icons/hicolor/1024x1024/apps/@webcatalogdesktop.png"
+				"/usr/share/icons/hicolor/1024x1024/apps/@webcatalogdesktop.png",
+				"/usr/share/icons/hicolor/512x512/apps/@webcatalogdesktop.png"
 			],
 			"name": "webcatalog-bin",
 			"provides": [
@@ -28,6 +30,6 @@
 		}
 	},
 	"source-name": "webcatalog-bin",
-	"source-release": "2",
-	"source-version": "73.2.0"
+	"source-release": "3",
+	"source-version": "73.8.0"
 }

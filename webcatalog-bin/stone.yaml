@@ -4,19 +4,20 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : webcatalog-bin
-version     : 73.2.0
-release     : 2
+version     : 73.8.0
+release     : 3
 summary     : webcatalog
 license     : Distributable
 homepage    : https://webcatalog.io/en/desktop
 upstreams   :
-    - https://cdn-2.webcatalog.io/webcatalog/WebCatalog-73.2.0.AppImage:
-        hash: 1a49c1af54b571e7a33be3b7c40d9efc6232e2576a029758a0fd1928ef49c18a
+    - https://cdn-2.webcatalog.io/webcatalog/WebCatalog-73.8.0.AppImage:
+        hash: 6a1c02399013f0fe1ce3e4f0e7a3c2833c03190abc02aeead2e1c605ca2d0183
         unpack: false
         rename: WebCatalog
 description : |
     webcatalog
 builddeps   :
+    - binary(mogrify)
     - binary(patch)
     - soname(libfuse.so.2(x86_64))
 rundeps     :
@@ -37,3 +38,8 @@ install     : |
     cp -r --no-preserve=mode,ownership squashfs-root/@webcatalogdesktop.desktop %(installroot)%(datadir)/applications/webcatalog.desktop
     patch -d "%(installroot)" -p1 < "%(pkgdir)/webcatalog.patch"
     rm %(installroot)%(datadir)/applications/webcatalog.desktop.orig
+
+    # Most (all?) DM/WMs can't work with 1024x1024 icons
+    %install_dir %(installroot)%(datadir)/icons/hicolor/512x512/apps
+    cp %(installroot)%(datadir)/icons/hicolor/1024x1024/apps/@webcatalogdesktop.png %(installroot)%(datadir)/icons/hicolor/512x512/apps/@webcatalogdesktop.png
+    mogrify -resize 512x512 %(installroot)%(datadir)/icons/hicolor/512x512/apps/@webcatalogdesktop.png
