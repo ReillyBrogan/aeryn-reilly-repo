@@ -156,10 +156,8 @@
 				"/usr/lib/mailspring/resources/app.asar.unpacked/node_modules/better-sqlite3/build/Release/better_sqlite3.node",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/node_modules/emoji-data/vendor/emoji-data/emoji.json",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/node_modules/jszip/vendor/FileSaver.js",
-				"/usr/lib/mailspring/resources/app.asar.unpacked/node_modules/macos-notification-state/build/Release/focuscenter.node",
-				"/usr/lib/mailspring/resources/app.asar.unpacked/node_modules/macos-notification-state/build/Release/notificationstate.node",
-				"/usr/lib/mailspring/resources/app.asar.unpacked/node_modules/macos-notification-state/build/Release/obj.target/focuscenter.node",
-				"/usr/lib/mailspring/resources/app.asar.unpacked/node_modules/macos-notification-state/build/Release/obj.target/notificationstate.node",
+				"/usr/lib/mailspring/resources/app.asar.unpacked/node_modules/windows-focus-assist/build/Release/focusassist.node",
+				"/usr/lib/mailspring/resources/app.asar.unpacked/node_modules/windows-focus-assist/build/Release/obj.target/focusassist.node",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/src/quickpreview/dompurify/purify.min.js",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/src/quickpreview/index.js",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/src/quickpreview/pdfjs-4.3.136/LICENSE",
@@ -578,6 +576,6 @@
 		}
 	},
 	"source-name": "mailspring",
-	"source-release": "3",
-	"source-version": "1.17.4"
+	"source-release": "4",
+	"source-version": "1.18.0"
 }
