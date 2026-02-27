@@ -146,10 +146,6 @@
 				"/usr/lib/tidal-hifi/resources/app.asar.unpacked/node_modules/@parcel/watcher/src/windows/WindowsBackend.hh",
 				"/usr/lib/tidal-hifi/resources/app.asar.unpacked/node_modules/@parcel/watcher/src/windows/win_utils.hh",
 				"/usr/lib/tidal-hifi/resources/app.asar.unpacked/node_modules/@parcel/watcher/wrapper.js",
-				"/usr/lib/tidal-hifi/resources/app.asar.unpacked/node_modules/abstract-socket/LICENSE",
-				"/usr/lib/tidal-hifi/resources/app.asar.unpacked/node_modules/abstract-socket/build/Release/bindings.node",
-				"/usr/lib/tidal-hifi/resources/app.asar.unpacked/node_modules/abstract-socket/lib/abstract_socket.js",
-				"/usr/lib/tidal-hifi/resources/app.asar.unpacked/node_modules/abstract-socket/package.json",
 				"/usr/lib/tidal-hifi/resources/themes/Blood.css",
 				"/usr/lib/tidal-hifi/resources/themes/Tokyo Night.css",
 				"/usr/lib/tidal-hifi/snapshot_blob.bin",
@@ -175,6 +171,6 @@
 		}
 	},
 	"source-name": "tidal-hifi",
-	"source-release": "1",
-	"source-version": "6.1.0"
+	"source-release": "2",
+	"source-version": "6.2.0"
 }
