@@ -4,11 +4,11 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : dagger
-version     : 0.19.11
-release     : 4
+version     : 0.20.1
+release     : 5
 homepage    : https://dagger.io/
 upstreams   :
-    - https://github.com/dagger/dagger/archive/refs/tags/v0.19.11.tar.gz : 80b231338c41ade5ed71bce756cac6d2552aa52461d626e9718b11774c394e2e
+    - https://github.com/dagger/dagger/archive/refs/tags/v0.20.1.tar.gz : 44215536787ae1bf12994621f36e9c955cb8c0aa467d3863d7be16b8f0a7bf75
 summary     : A portable devkit for CI/CD pipelines
 description : |
     A portable devkit for CI/CD pipelines
