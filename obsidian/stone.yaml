@@ -1,0 +1,41 @@
+#
+# SPDX-FileCopyrightText: © 2020-2024 Serpent OS Developers
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+name        : obsidian
+version     : "1.12.4"
+release     : 1
+summary     : Obsidian
+license     : LicenseRef-Obsidian
+homepage    : https://vesktop.vencord.dev
+upstreams   :
+    - https://github.com/obsidianmd/obsidian-releases/releases/download/v1.12.4/obsidian-1.12.4.tar.gz:
+        hash: 72eb26dfcf123f8e07be8083f74fa045f400c71ec1fe64e58ab91d9cc084c8de
+description : |
+    Obsidian
+builddeps   :
+    - binary(ar)
+    - binary(bsdtar-static)
+    - binary(ln)
+rundeps     :
+    - binary(xdg-open)
+    # - binary(python3)
+    # - soname(libXss.so.1(x86_64))
+    # - soname(libatomic.so.1(x86_64))
+# Causes krisp noise suppression not to load
+debug       : false
+strip       : false
+install     : |
+    obsidiandir=%(libdir)/%(name)
+
+    %install_dir %(installroot)$obsidiandir
+    cp -a ./* %(installroot)$obsidiandir
+
+    %install_dir %(installroot)%(bindir)
+    ln -srv %(installroot)$obsidiandir/obsidian %(installroot)%(bindir)/obsidian
+
+    %install_file %(pkgdir)/obsidian.desktop -t %(installroot)/usr/share/applications/
+
+    %install_dir %(installroot)/%(datadir)/icons/hicolor/512x512/apps
+    ln -srv %(installroot)$obsidiandir/resources/icon.png %(installroot)/%(datadir)/icons/hicolor/512x512/apps/obsidian.png
