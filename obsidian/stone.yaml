@@ -4,14 +4,14 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : obsidian
-version     : "1.12.4"
-release     : 1
+version     : "1.12.7"
+release     : 2
 summary     : Obsidian
 license     : LicenseRef-Obsidian
 homepage    : https://vesktop.vencord.dev
 upstreams   :
-    - https://github.com/obsidianmd/obsidian-releases/releases/download/v1.12.4/obsidian-1.12.4.tar.gz:
-        hash: 72eb26dfcf123f8e07be8083f74fa045f400c71ec1fe64e58ab91d9cc084c8de
+    - https://github.com/obsidianmd/obsidian-releases/releases/download/v1.12.7/obsidian-1.12.7.tar.gz:
+        hash: fcbe08b111d9c1fdb09b9c08952b06e1c829c62163eba2584c4b4ec859be079d
 description : |
     Obsidian
 builddeps   :
@@ -23,7 +23,6 @@ rundeps     :
     # - binary(python3)
     # - soname(libXss.so.1(x86_64))
     # - soname(libatomic.so.1(x86_64))
-# Causes krisp noise suppression not to load
 debug       : false
 strip       : false
 install     : |

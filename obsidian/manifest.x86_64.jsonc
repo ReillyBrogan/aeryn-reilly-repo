@@ -117,6 +117,7 @@
 				"/usr/lib/obsidian/locales/zh-CN.pak",
 				"/usr/lib/obsidian/locales/zh-TW.pak",
 				"/usr/lib/obsidian/obsidian",
+				"/usr/lib/obsidian/obsidian-cli",
 				"/usr/lib/obsidian/resources.pak",
 				"/usr/lib/obsidian/resources/app.asar",
 				"/usr/lib/obsidian/resources/app.asar.unpacked/node_modules/btime/binding.node",
@@ -146,6 +147,6 @@
 		}
 	},
 	"source-name": "obsidian",
-	"source-release": "1",
-	"source-version": "1.12.4"
+	"source-release": "2",
+	"source-version": "1.12.7"
 }
