@@ -4,21 +4,21 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : dagger
-version     : 0.20.1
-release     : 5
+version     : 0.20.3
+release     : 6
 homepage    : https://dagger.io/
 upstreams   :
-    - https://github.com/dagger/dagger/archive/refs/tags/v0.20.1.tar.gz : 44215536787ae1bf12994621f36e9c955cb8c0aa467d3863d7be16b8f0a7bf75
+    - https://github.com/dagger/dagger/archive/refs/tags/v0.20.3.tar.gz : 12b64dc97841c97287d6cc4d6653351b76816eed08f271b44c38636e6247c4bb
 summary     : A portable devkit for CI/CD pipelines
 description : |
     A portable devkit for CI/CD pipelines
 license     : Apache-2.0
-networking  : yes
+networking  : true
 builddeps   :
     - binary(go)
 setup       : |
     go mod vendor
-build      : |
+build       : |
     # set Go flags
     export CGO_CFLAGS="${CFLAGS}"
     export CGO_CPPFLAGS="${CPPFLAGS}"
