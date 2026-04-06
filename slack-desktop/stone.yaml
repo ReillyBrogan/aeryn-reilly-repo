@@ -4,14 +4,14 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : slack-desktop
-version     : 4.47.69
-release     : 1
+version     : 4.49.81
+release     : 2
 summary     : Slack
 license     : custom
 homepage    : https://slack.com
 upstreams   :
-    - https://downloads.slack-edge.com/desktop-releases/linux/x64/4.47.69/slack-desktop-4.47.69-amd64.deb:
-        hash: 7bd5e3079ea968e765dcbb8872941d98f3ae1b953a3ebd947c98ef34e9906ba5
+    - https://downloads.slack-edge.com/desktop-releases/linux/x64/4.49.81/slack-desktop-4.49.81-amd64.deb:
+        hash: 2bd1c5b9c89b3b6b98466e165898ded64036ed419d83b2f39f8f847507e377cb
         unpack: false
         rename: slack-desktop.deb
 description : |
