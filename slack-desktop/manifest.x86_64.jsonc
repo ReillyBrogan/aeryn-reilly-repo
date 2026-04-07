@@ -171,7 +171,7 @@
 				"/usr/lib/slack/v8_context_snapshot.bin",
 				"/usr/lib/slack/version",
 				"/usr/lib/slack/vk_swiftshader_icd.json",
-				"/usr/share/applications/Slack.desktop",
+				"/usr/share/applications/slack.desktop",
 				"/usr/share/doc/slack-desktop/OPEN_SOURCE_LICENSE_ATTRIBUTIONS",
 				"/usr/share/icons/hicolor/512x512/apps/slack.png",
 				"/usr/share/lintian/overrides/slack"
