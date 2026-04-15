@@ -4,11 +4,11 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : dagger
-version     : 0.20.3
-release     : 6
+version     : 0.20.5
+release     : 7
 homepage    : https://dagger.io/
 upstreams   :
-    - https://github.com/dagger/dagger/archive/refs/tags/v0.20.3.tar.gz : 12b64dc97841c97287d6cc4d6653351b76816eed08f271b44c38636e6247c4bb
+    - https://github.com/dagger/dagger/archive/refs/tags/v0.20.5.tar.gz : 08c2a554cb36a335fbcb1d77be18a77892c3f4267a9e7d8aee895fb48c400768
 summary     : A portable devkit for CI/CD pipelines
 description : |
     A portable devkit for CI/CD pipelines
@@ -21,7 +21,6 @@ setup       : |
 build       : |
     # set Go flags
     export CGO_CFLAGS="${CFLAGS}"
-    export CGO_CPPFLAGS="${CPPFLAGS}"
     export CGO_CXXFLAGS="${CXXFLAGS}"
 
     mkdir build
