@@ -5,7 +5,7 @@
 #
 name        : mailspring
 version     : "1.19.1"
-release     : 6
+release     : 7
 summary     : Mailspring
 license     : GPL-3.0-only
 homepage    : https://github.com/Foundry376/Mailspring
@@ -23,6 +23,9 @@ rundeps     :
     - libtidy
 setup       : |
     %patch %(pkgdir)/0001-No-deb-rpm.patch
+
+    %patch %(pkgdir)/0001-fix-Fix-Wayland-app_id-after-Electron-41.patch
+    %patch %(pkgdir)/0002-chore-Update-Electron-to-v41.2.0.patch
 
     # This forces the download of mailsync
     # TODO BUILD THIS MANUALLY
