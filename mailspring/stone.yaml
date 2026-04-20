@@ -4,13 +4,13 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : mailspring
-version     : "1.19.1"
-release     : 7
+version     : "1.20.1"
+release     : 8
 summary     : Mailspring
 license     : GPL-3.0-only
 homepage    : https://github.com/Foundry376/Mailspring
 upstreams   :
-    - git|https://github.com/Foundry376/Mailspring.git: 66f9e225f8d504aac03f952d5cc83c56d9d0cf3a
+    - git|https://github.com/Foundry376/Mailspring.git: 2b045d7ee991baf0e859747cdc6f399a48c157fb
 description : |
     Mailspring email client
 networking  : true
@@ -23,9 +23,6 @@ rundeps     :
     - libtidy
 setup       : |
     %patch %(pkgdir)/0001-No-deb-rpm.patch
-
-    %patch %(pkgdir)/0001-fix-Fix-Wayland-app_id-after-Electron-41.patch
-    %patch %(pkgdir)/0002-chore-Update-Electron-to-v41.2.0.patch
 
     # This forces the download of mailsync
     # TODO BUILD THIS MANUALLY
