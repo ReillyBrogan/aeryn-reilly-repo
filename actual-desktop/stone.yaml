@@ -1,0 +1,50 @@
+#
+# SPDX-FileCopyrightText: © 2020-2024 Serpent OS Developers
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+name        : actual-desktop
+version     : 26.4.0
+release     : 1
+summary     : actual
+license     : Distributable
+homepage    : https://webcatalog.io/en/desktop
+upstreams   :
+    - https://github.com/actualbudget/actual/releases/download/v26.4.0/Actual-linux-x86_64.AppImage:
+        hash: 502969e94112db685c125d6bfbbd43156ac1a4a4fb106b008ad461a03d8ae410
+        unpack: false
+        rename: Actual.AppImage
+description : |
+    actual
+rundeps     :
+    - libayatana-appindicator
+    - libnotify
+# Causes krisp noise suppression not to load
+debug       : false
+strip       : false
+setup       : |
+    chmod +x %(sourcedir)/Actual.AppImage
+    %(sourcedir)/Actual.AppImage --appimage-extract
+install     : |
+    _actual_dir=%(installroot)/%(libdir)/%(name)
+    %install_dir ${_actual_dir}
+    cp -r squashfs-root/. ${_actual_dir}
+
+    # NO WANT
+    rm -rfv ${_actual_dir}/usr/ \
+        ${_actual_dir}/resources/app.asar.unpacked/node_modules/bcrypt/prebuilds/darwin*/ \
+        ${_actual_dir}/resources/app.asar.unpacked/node_modules/bcrypt/prebuilds/win32*/ \
+        ${_actual_dir}/resources/app.asar.unpacked/node_modules/bcrypt/prebuilds/linux-arm*/ \
+        ${_actual_dir}/resources/app.asar.unpacked/node_modules/bcrypt/prebuilds/linux-x64/bcrypt.musl.node
+    
+    %install_dir %(installroot)%(bindir)
+    ln -srv ${_actual_dir}/actual %(installroot)%(bindir)/actual
+
+    %install_dir %(installroot)%(datadir)/applications
+    cp -r --no-preserve=mode,ownership squashfs-root/usr/share/icons %(installroot)%(datadir)
+
+    ln -srv ${_actual_dir}/actual.desktop %(installroot)%(datadir)/applications/actual.desktop
+    sed -i "s|AppRun --no-sandbox|actual|g" ${_actual_dir}/actual.desktop
+
+    # FIX PERM
+    find %(installroot) -type d -exec chmod 755 {} +
