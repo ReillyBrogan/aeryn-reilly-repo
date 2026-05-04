@@ -1,0 +1,53 @@
+/** Human readable report. This is not consumed by boulder */
+{
+	"manifest-version": "0.2",
+	"packages": {
+		"khip": {
+			"build-depends": [
+				"binary(curl)",
+				"ladspa-devel",
+				"pkgconfig(fftw3f)",
+				"pkgconfig(openblas)",
+				"pkgconfig(samplerate)"
+			],
+			"depends": [
+				"interpreter(/usr/lib/ld-linux-x86-64.so.2(x86_64))",
+				"soname(libc.so.6(x86_64))",
+				"soname(libfftw3f.so.3(x86_64))",
+				"soname(libm.so.6(x86_64))",
+				"soname(libopenblas.so.0(x86_64))",
+				"soname(libsamplerate.so.0(x86_64))"
+			],
+			"files": [
+				"/usr/bin/khip_bulk",
+				"/usr/lib/ladspa/libkhip_ladspa.so",
+				"/usr/lib/libkhip.so"
+			],
+			"name": "khip",
+			"provides": [
+				"binary(khip_bulk)",
+				"soname(ladspa/libkhip_ladspa.so(x86_64))",
+				"soname(libkhip.so(x86_64))"
+			]
+		},
+		"khip-devel": {
+			"build-depends": [
+				"binary(curl)",
+				"ladspa-devel",
+				"pkgconfig(fftw3f)",
+				"pkgconfig(openblas)",
+				"pkgconfig(samplerate)"
+			],
+			"depends": [
+				"khip"
+			],
+			"files": [
+				"/usr/include/khip.h"
+			],
+			"name": "khip-devel"
+		}
+	},
+	"source-name": "khip",
+	"source-release": "1",
+	"source-version": "0.4"
+}

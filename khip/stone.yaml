@@ -1,0 +1,32 @@
+#
+# SPDX-FileCopyrightText: © 2020-2025 Serpent OS Developers
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+name        : khip
+version     : "0.4"
+release     : 1
+homepage    : https://dagger.io/
+upstreams   :
+    - https://codeberg.org/khip/khip/releases/download/v0.4/khip-0.4.tar.gz : 87815d14c92e9c74d11c5d4db2be13da300ff1e25e8dfe8e1fea2c060bc9cded
+summary     : Krisp noice cancellation
+description : |
+    Krisp noice cancellation
+license     : Proprietary
+networking  : true
+builddeps   :
+    - binary(curl)
+    - pkgconfig(fftw3f)
+    - pkgconfig(openblas)
+    - pkgconfig(samplerate)
+    - ladspa-devel
+setup       : |
+    %meson
+build       : |
+    %meson_build
+install    : |
+    %meson_install
+packages   :
+    - "%(name)":
+        paths:
+            - /usr/lib/libkhip.so
