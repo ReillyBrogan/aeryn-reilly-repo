@@ -4,13 +4,13 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : mailspring
-version     : "1.20.1"
-release     : 8
+version     : "1.21.0"
+release     : 9
 summary     : Mailspring
 license     : GPL-3.0-only
 homepage    : https://github.com/Foundry376/Mailspring
 upstreams   :
-    - git|https://github.com/Foundry376/Mailspring.git: 2b045d7ee991baf0e859747cdc6f399a48c157fb
+    - git|https://github.com/Foundry376/Mailspring.git: 561a81a36994eedc1ff588994a45d2e86455d585
 description : |
     Mailspring email client
 networking  : true
@@ -22,7 +22,7 @@ builddeps   :
 rundeps     :
     - libtidy
 setup       : |
-    %patch %(pkgdir)/0001-No-deb-rpm.patch
+    # TODO: If you put this in the aeryn repo re-add the patch to disable update notifications
 
     # This forces the download of mailsync
     # TODO BUILD THIS MANUALLY
@@ -30,7 +30,7 @@ setup       : |
 
     npm install
 build       : |
-    npm run-script build
+    npm run build -- --skip-installers
 
     # Remove not needed dep on libdb
     rm -v app/dist/mailspring-linux-x64/resources/app.asar.unpacked/libsasldb.so*

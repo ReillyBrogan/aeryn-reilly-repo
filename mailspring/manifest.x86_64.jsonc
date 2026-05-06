@@ -162,11 +162,8 @@
 				"/usr/lib/mailspring/resources/app.asar.unpacked/src/quickpreview/index.js",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/src/quickpreview/pdfjs-4.3.136/LICENSE",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/src/quickpreview/pdfjs-4.3.136/build/pdf.mjs",
-				"/usr/lib/mailspring/resources/app.asar.unpacked/src/quickpreview/pdfjs-4.3.136/build/pdf.mjs.map",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/src/quickpreview/pdfjs-4.3.136/build/pdf.sandbox.mjs",
-				"/usr/lib/mailspring/resources/app.asar.unpacked/src/quickpreview/pdfjs-4.3.136/build/pdf.sandbox.mjs.map",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/src/quickpreview/pdfjs-4.3.136/build/pdf.worker.mjs",
-				"/usr/lib/mailspring/resources/app.asar.unpacked/src/quickpreview/pdfjs-4.3.136/build/pdf.worker.mjs.map",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/src/quickpreview/pdfjs-4.3.136/web/cmaps/78-EUC-H.bcmap",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/src/quickpreview/pdfjs-4.3.136/web/cmaps/78-EUC-V.bcmap",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/src/quickpreview/pdfjs-4.3.136/web/cmaps/78-H.bcmap",
@@ -531,7 +528,6 @@
 				"/usr/lib/mailspring/resources/app.asar.unpacked/src/quickpreview/pdfjs-4.3.136/web/viewer.css",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/src/quickpreview/pdfjs-4.3.136/web/viewer.html",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/src/quickpreview/pdfjs-4.3.136/web/viewer.mjs",
-				"/usr/lib/mailspring/resources/app.asar.unpacked/src/quickpreview/pdfjs-4.3.136/web/viewer.mjs.map",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/src/quickpreview/preload.js",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/src/quickpreview/prism-1.15.0/prism.css",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/src/quickpreview/prism-1.15.0/prism.js",
@@ -576,6 +572,6 @@
 		}
 	},
 	"source-name": "mailspring",
-	"source-release": "8",
-	"source-version": "1.20.1"
+	"source-release": "9",
+	"source-version": "1.21.0"
 }
