@@ -121,6 +121,7 @@
 				"/usr/lib/slack/resources/app.asar.unpacked/dist/call-get-macos-notification-state-entry-point.bundle.js",
 				"/usr/lib/slack/resources/app.asar.unpacked/dist/call-get-media-access-status-entry-point.bundle.js",
 				"/usr/lib/slack/resources/app.asar.unpacked/dist/call-get-windows-focus-assist-entry-point.bundle.js",
+				"/usr/lib/slack/resources/app.asar.unpacked/dist/call-get-windows-notifier-state-entry-point.bundle.js",
 				"/usr/lib/slack/resources/app.asar.unpacked/dist/resources/macos-menubar-icon-Template.png",
 				"/usr/lib/slack/resources/app.asar.unpacked/dist/resources/macos-menubar-icon-Template@2x.png",
 				"/usr/lib/slack/resources/app.asar.unpacked/dist/resources/macos-menubar-icon-Template@3x.png",
@@ -188,6 +189,6 @@
 		}
 	},
 	"source-name": "slack-desktop",
-	"source-release": "2",
-	"source-version": "4.49.81"
+	"source-release": "3",
+	"source-version": "4.50.136"
 }
