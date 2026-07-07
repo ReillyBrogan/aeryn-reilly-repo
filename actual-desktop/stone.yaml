@@ -4,14 +4,14 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : actual-desktop
-version     : 26.5.0
-release     : 2
+version     : 26.7.0
+release     : 3
 summary     : actual
 license     : Distributable
 homepage    : https://webcatalog.io/en/desktop
 upstreams   :
-    - https://github.com/actualbudget/actual/releases/download/v26.5.0/Actual-linux-x86_64.AppImage:
-        hash: 77e19142b83190e603d8c3a9bb2035c296a2fd40b4b16cb001be0e2dc075f056
+    - https://github.com/actualbudget/actual/releases/download/v26.7.0/Actual-linux-x86_64.AppImage:
+        hash: 5c55cec1e1d5f9a982090c4dc95dfd8cba3b7d98b7616ca9e565f3a95d90568f
         unpack: false
         rename: Actual.AppImage
 description : |

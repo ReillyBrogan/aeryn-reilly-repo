@@ -127,7 +127,7 @@
 				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/bcrypt/Makefile",
 				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/bcrypt/SECURITY.md",
 				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/bcrypt/bcrypt.js",
-				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/bcrypt/bin/linux-x64-140/bcrypt.node",
+				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/bcrypt/bin/linux-x64-145/bcrypt.node",
 				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/bcrypt/build-all.sh",
 				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/bcrypt/build/Release/bcrypt_lib.node",
 				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/bcrypt/package.json",
@@ -176,6 +176,6 @@
 		}
 	},
 	"source-name": "actual-desktop",
-	"source-release": "2",
-	"source-version": "26.5.0"
+	"source-release": "3",
+	"source-version": "26.7.0"
 }
