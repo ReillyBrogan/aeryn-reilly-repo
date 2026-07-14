@@ -4,14 +4,14 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : webcatalog-bin
-version     : 74.7.1
-release     : 5
+version     : 74.9.0
+release     : 6
 summary     : webcatalog
 license     : Distributable
 homepage    : https://webcatalog.io/en/desktop
 upstreams   :
-    - https://cdn-2.webcatalog.io/webcatalog/WebCatalog-74.7.1.AppImage:
-        hash: c7dbcc56984933c1714e53cc219492f53a94a3ef86137829e8423333abc106f3
+    - https://cdn-2.webcatalog.io/webcatalog/WebCatalog-74.9.0.AppImage:
+        hash: ab8350213f856f1e9752714d3215a7d2048fd822cf1b4cb2bef4456289e75041
         unpack: false
         rename: WebCatalog
 description : |
