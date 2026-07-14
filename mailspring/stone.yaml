@@ -4,13 +4,13 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : mailspring
-version     : "1.21.1"
-release     : 10
+version     : "1.22.0"
+release     : 11
 summary     : Mailspring
 license     : GPL-3.0-only
 homepage    : https://github.com/Foundry376/Mailspring
 upstreams   :
-    - git|https://github.com/Foundry376/Mailspring.git: ae68e88121c8e98f61c8f10aa6a6161f4c8444b1
+    - git|https://github.com/Foundry376/Mailspring.git: b29ea0e65c4794eb6531134992d5fb19e2e02abd
 description : |
     Mailspring email client
 networking  : true
