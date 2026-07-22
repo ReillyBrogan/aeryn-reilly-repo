@@ -4,14 +4,14 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : webcatalog-bin
-version     : 74.9.0
-release     : 6
+version     : 77.5.0
+release     : 7
 summary     : webcatalog
 license     : Distributable
 homepage    : https://webcatalog.io/en/desktop
 upstreams   :
-    - https://cdn-2.webcatalog.io/webcatalog/WebCatalog-74.9.0.AppImage:
-        hash: ab8350213f856f1e9752714d3215a7d2048fd822cf1b4cb2bef4456289e75041
+    - https://cdn-2.webcatalog.io/webcatalog/WebCatalog-77.5.0.AppImage:
+        hash: ee3d1b4a0cd747b774fe031692ac0560036a8dff309043ebaecb203adc89367e
         unpack: false
         rename: WebCatalog
 description : |
@@ -33,13 +33,15 @@ install     : |
     %install_dir %(installroot)%(bindir)
     ln -srv %(installroot)%(libdir)/appimages/WebCatalog.appimage %(installroot)%(bindir)/webcatalog
 
+    ls -ahl squashfs-root
+
     %install_dir %(installroot)%(datadir)/applications
     cp -r --no-preserve=mode,ownership squashfs-root/usr/share/icons %(installroot)%(datadir)
-    cp -r --no-preserve=mode,ownership squashfs-root/@webcatalogdesktop.desktop %(installroot)%(datadir)/applications/webcatalog.desktop
+    cp -r --no-preserve=mode,ownership squashfs-root/webcatalog.desktop %(installroot)%(datadir)/applications/webcatalog.desktop
     patch -d "%(installroot)" -p1 < "%(pkgdir)/webcatalog.patch"
-    rm %(installroot)%(datadir)/applications/webcatalog.desktop.orig
+    # rm %(installroot)%(datadir)/applications/webcatalog.desktop.orig
 
     # Most (all?) DM/WMs can't work with 1024x1024 icons
     %install_dir %(installroot)%(datadir)/icons/hicolor/512x512/apps
-    cp %(installroot)%(datadir)/icons/hicolor/1024x1024/apps/@webcatalogdesktop.png %(installroot)%(datadir)/icons/hicolor/512x512/apps/@webcatalogdesktop.png
-    mogrify -resize 512x512 %(installroot)%(datadir)/icons/hicolor/512x512/apps/@webcatalogdesktop.png
+    cp %(installroot)%(datadir)/icons/hicolor/1024x1024/apps/webcatalog.png %(installroot)%(datadir)/icons/hicolor/512x512/apps/webcatalog.png
+    mogrify -resize 512x512 %(installroot)%(datadir)/icons/hicolor/512x512/apps/webcatalog.png

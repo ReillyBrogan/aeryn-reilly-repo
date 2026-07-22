@@ -20,8 +20,8 @@
 				"/usr/bin/webcatalog",
 				"/usr/lib/appimages/WebCatalog.appimage",
 				"/usr/share/applications/webcatalog.desktop",
-				"/usr/share/icons/hicolor/1024x1024/apps/@webcatalogdesktop.png",
-				"/usr/share/icons/hicolor/512x512/apps/@webcatalogdesktop.png"
+				"/usr/share/icons/hicolor/1024x1024/apps/webcatalog.png",
+				"/usr/share/icons/hicolor/512x512/apps/webcatalog.png"
 			],
 			"name": "webcatalog-bin",
 			"provides": [
@@ -30,6 +30,6 @@
 		}
 	},
 	"source-name": "webcatalog-bin",
-	"source-release": "6",
-	"source-version": "74.9.0"
+	"source-release": "7",
+	"source-version": "77.5.0"
 }
