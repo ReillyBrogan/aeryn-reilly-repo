@@ -548,7 +548,7 @@
 				"/usr/share/icons/hicolor/32x32/apps/mailspring.png",
 				"/usr/share/icons/hicolor/512x512/apps/mailspring.png",
 				"/usr/share/icons/hicolor/64x64/apps/mailspring.png",
-				"/usr/share/metainfo/mailspring.appdata.xml"
+				"/usr/share/metainfo/mailspring.metainfo.xml"
 			],
 			"name": "mailspring",
 			"provides": [
@@ -572,6 +572,6 @@
 		}
 	},
 	"source-name": "mailspring",
-	"source-release": "11",
-	"source-version": "1.22.0"
+	"source-release": "12",
+	"source-version": "1.23.0"
 }

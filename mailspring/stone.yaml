@@ -4,13 +4,13 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : mailspring
-version     : "1.22.0"
-release     : 11
+version     : "1.23.0"
+release     : 12
 summary     : Mailspring
 license     : GPL-3.0-only
 homepage    : https://github.com/Foundry376/Mailspring
 upstreams   :
-    - git|https://github.com/Foundry376/Mailspring.git: b29ea0e65c4794eb6531134992d5fb19e2e02abd
+    - git|https://github.com/Foundry376/Mailspring.git: 5b37181118243439d7777e863faf6e7138de60b0
 description : |
     Mailspring email client
 networking  : true
@@ -22,6 +22,7 @@ builddeps   :
 rundeps     :
     - libtidy
 setup       : |
+    %patch %(pkgdir)/0001-hicolor-icon.patch
     # TODO: If you put this in the aeryn repo re-add the patch to disable update notifications
 
     # This forces the download of mailsync
@@ -43,7 +44,7 @@ install     : |
     %install_dir %(installroot)%(bindir)
     ln -srv %(installroot)$mailspringdir/mailspring %(installroot)%(bindir)/mailspring
 
-    for i in "Mailspring.desktop" "mailspring.appdata.xml"; do
+    for i in "Mailspring.desktop" "mailspring.metainfo.xml"; do
         sed -e "s|<%%= productName %%>|Mailspring|g" \
             -e "s|<%%= name %%>|mailspring|g" \
             -e "s|<%%= description %%>|The best email app for people and teams at work|g" \
@@ -51,7 +52,7 @@ install     : |
     done
 
     %install_file Mailspring.desktop -t %(installroot)/usr/share/applications/
-    %install_file mailspring.appdata.xml -t %(installroot)/usr/share/metainfo/
+    %install_file mailspring.metainfo.xml -t %(installroot)/usr/share/metainfo/
 
     for i in 16 32 64 128 256 512; do
         %install_dir %(installroot)/%(datadir)/icons/hicolor/${i}x${i}/apps

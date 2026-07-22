@@ -1,0 +1,22 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Reilly Brogan <reilly@reillybrogan.com>
+Date: Wed, 22 Jul 2026 13:21:36 -0500
+Subject: [PATCH] hicolor icon
+
+---
+ app/src/browser/mailspring-window.ts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/app/src/browser/mailspring-window.ts b/app/src/browser/mailspring-window.ts
+index d63b457a3..36ba56e92 100644
+--- a/app/src/browser/mailspring-window.ts
++++ b/app/src/browser/mailspring-window.ts
+@@ -129,7 +129,7 @@ export default class MailspringWindow extends EventEmitter {
+       if (!WindowIconPath) {
+         WindowIconPath = getFirstExistingPath(
+           XDG_DATA_PATHS,
+-          path.join('pixmaps', 'mailspring.png')
++          path.join('icons', 'hicolor', '512x512', 'apps', 'mailspring.png')
+         );
+         if (!WindowIconPath) {
+           WindowIconPath = path.resolve(this.resourcePath, 'static', 'images', 'mailspring.png');
