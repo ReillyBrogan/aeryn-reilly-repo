@@ -4,13 +4,13 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : tidal-hifi
-version     : 7.0.1
-release     : 4
+version     : 8.1.3
+release     : 5
 summary     : tidal
 license     : MIT
 homepage    : https://github.com/Mastermindzh/tidal-hifi
 upstreams   :
-    - https://github.com/Mastermindzh/tidal-hifi/archive/refs/tags/7.0.1.tar.gz: 17022a7a5d222ee869147b1dec97efb6d06527a635c0b005a0ec339fe131985e
+    - https://github.com/Mastermindzh/tidal-hifi/archive/refs/tags/8.1.3.tar.gz: c63ffef62216a66148566c516bd04b894b6318c871579e05b1db160dde3d4bd4
 description : |
     tidal
 networking  : true

@@ -146,14 +146,17 @@
 				"/usr/lib/tidal-hifi/resources/app.asar.unpacked/node_modules/@parcel/watcher/src/windows/WindowsBackend.hh",
 				"/usr/lib/tidal-hifi/resources/app.asar.unpacked/node_modules/@parcel/watcher/src/windows/win_utils.hh",
 				"/usr/lib/tidal-hifi/resources/app.asar.unpacked/node_modules/@parcel/watcher/wrapper.js",
+				"/usr/lib/tidal-hifi/resources/themes/Aura Dracula Spirit Soft.css",
 				"/usr/lib/tidal-hifi/resources/themes/Blood.css",
 				"/usr/lib/tidal-hifi/resources/themes/Catppuccin.css",
 				"/usr/lib/tidal-hifi/resources/themes/Dracula.css",
+				"/usr/lib/tidal-hifi/resources/themes/Everforest.css",
 				"/usr/lib/tidal-hifi/resources/themes/Gruvbox.css",
 				"/usr/lib/tidal-hifi/resources/themes/NightOwl.css",
 				"/usr/lib/tidal-hifi/resources/themes/Nord.css",
 				"/usr/lib/tidal-hifi/resources/themes/Solarized Dark.css",
 				"/usr/lib/tidal-hifi/resources/themes/Tokyo Night.css",
+				"/usr/lib/tidal-hifi/resources/themes/Transparent.css",
 				"/usr/lib/tidal-hifi/snapshot_blob.bin",
 				"/usr/lib/tidal-hifi/tidal-hifi",
 				"/usr/lib/tidal-hifi/v8_context_snapshot.bin",
@@ -177,6 +180,6 @@
 		}
 	},
 	"source-name": "tidal-hifi",
-	"source-release": "4",
-	"source-version": "7.0.1"
+	"source-release": "5",
+	"source-version": "8.1.3"
 }
