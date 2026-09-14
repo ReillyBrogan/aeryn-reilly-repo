@@ -60,8 +60,6 @@
 				"/usr/lib/mailspring/chrome_200_percent.pak",
 				"/usr/lib/mailspring/chrome_crashpad_handler",
 				"/usr/lib/mailspring/icudtl.dat",
-				"/usr/lib/mailspring/libEGL.so",
-				"/usr/lib/mailspring/libGLESv2.so",
 				"/usr/lib/mailspring/libffmpeg.so",
 				"/usr/lib/mailspring/libvk_swiftshader.so",
 				"/usr/lib/mailspring/libvulkan.so.1",
@@ -154,6 +152,9 @@
 				"/usr/lib/mailspring/resources/app.asar.unpacked/mailsync",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/mailsync.bin",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/node_modules/better-sqlite3/build/Release/better_sqlite3.node",
+				"/usr/lib/mailspring/resources/app.asar.unpacked/node_modules/better-sqlite3/build/Release/obj.target/better_sqlite3.node",
+				"/usr/lib/mailspring/resources/app.asar.unpacked/node_modules/better-sqlite3/build/Release/obj.target/test_extension.node",
+				"/usr/lib/mailspring/resources/app.asar.unpacked/node_modules/better-sqlite3/build/Release/test_extension.node",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/node_modules/emoji-data/vendor/emoji-data/emoji.json",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/node_modules/jszip/vendor/FileSaver.js",
 				"/usr/lib/mailspring/resources/app.asar.unpacked/node_modules/windows-focus-assist/build/Release/focusassist.node",
@@ -553,8 +554,6 @@
 			"name": "mailspring",
 			"provides": [
 				"binary(mailspring)",
-				"soname(mailspring/libEGL.so(x86_64))",
-				"soname(mailspring/libGLESv2.so(x86_64))",
 				"soname(mailspring/libffmpeg.so(x86_64))",
 				"soname(mailspring/libvk_swiftshader.so(x86_64))",
 				"soname(mailspring/libvulkan.so.1(x86_64))",
@@ -572,6 +571,6 @@
 		}
 	},
 	"source-name": "mailspring",
-	"source-release": "12",
-	"source-version": "1.23.0"
+	"source-release": "13",
+	"source-version": "1.24.0"
 }
