@@ -1,0 +1,44 @@
+#
+# SPDX-FileCopyrightText: © 2020-2024 Serpent OS Developers
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+name        : mgba
+version     : 0.11.0
+release     : 1
+upstreams   :
+    - git|https://github.com/mgba-emu/mgba.git : 25ca25612eb806ad3a70f3209ccd93890ea0c2c6
+summary     : mGBA Game Boy Advance Emulator
+description : |
+    mGBA Game Boy Advance Emulator
+license     : MPL-2.0
+homepage    : https://mgba.io/
+builddeps   :
+    - cmake(Qt6Gui)
+    - cmake(Qt6LinguistTools)
+    - cmake(Qt6Multimedia)
+    - pkgconfig(epoxy)
+    - pkgconfig(freetype2)
+    - pkgconfig(json-c)
+    - pkgconfig(libavcodec)
+    - pkgconfig(libavfilter)
+    - pkgconfig(libavutil)
+    - pkgconfig(libedit)
+    - pkgconfig(libelf)
+    - pkgconfig(libpng)
+    - pkgconfig(libswresample)
+    - pkgconfig(libswscale)
+    - pkgconfig(libzip)
+    - pkgconfig(lua)
+    - pkgconfig(minizip)
+    - pkgconfig(sdl3)
+    - pkgconfig(sqlite3)
+    - pkgconfig(zlib)
+rundeps     :
+    - qt6-wayland
+setup       : |
+    %cmake
+build       : |
+    %cmake_build
+install     : |
+    %cmake_install
