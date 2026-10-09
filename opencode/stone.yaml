@@ -1,0 +1,48 @@
+#
+# SPDX-FileCopyrightText: © 2020-2026 Serpent OS Developers
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+name        : opencode
+version     : "2.0.26"
+release     : 1
+homepage    : https://github.com/anomalyco/opencode
+upstreams   :
+    - git|https://github.com/anomalyco/opencode.git : 9b4ec5714d481559990db0a816d5dec19541a814
+summary     : The open source coding agent
+description : |
+    OpenCode is an open source AI coding agent that helps you write and run code with any AI model.
+license     : MIT
+networking  : true
+builddeps   :
+    - binary(git)
+    - binary(jq)
+    - binary(npm)
+rundeps     :
+    - binary(curl)
+    - binary(rg)
+    - binary(tar)
+environment : |
+    # Bun is not packaged, so install it at build time with npm via npx
+    BUN_VERSION=$(jq -r '.packageManager | ltrimstr("bun@")' %(workdir)/package.json)
+setup       : |
+    npx --yes bun@${BUN_VERSION} install --frozen-lockfile --ignore-scripts
+build       : |
+    cd packages/cli
+    OPENCODE_VERSION=%(version) npx --yes bun@${BUN_VERSION} run ./script/build.ts --single --baseline --skip-install
+install     : |
+    %install_exe packages/cli/dist/cli-linux-x64-baseline/bin/opencode -t %(installroot)%(bindir)
+
+    %install_file LICENSE -t %(installroot)%(datadir)/licenses/%(name)
+
+    # Shell completions
+    mkdir -p completions
+    %(installroot)%(bindir)/opencode --completions bash > completions/opencode
+    %(installroot)%(bindir)/opencode --completions zsh > completions/_opencode
+    %(installroot)%(bindir)/opencode --completions fish > completions/opencode.fish
+    %install_file completions/opencode -t %(installroot)%(bashcompletionsdir)
+    %install_file completions/_opencode -t %(installroot)%(zshcompletionsdir)
+    %install_file completions/opencode.fish -t %(installroot)%(fishcompletionsdir)
+# Bun-compiled binary must not be stripped or debug-split
+debug       : false
+strip       : false
