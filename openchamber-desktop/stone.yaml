@@ -3,46 +3,69 @@
 #
 # SPDX-License-Identifier: MPL-2.0
 #
-name        : openchamber-desktop-bin
+name        : openchamber-desktop
 version     : "2.2.0"
 release     : 1
 summary     : OpenChamber desktop client
 license     : MIT
 homepage    : https://openchamber.dev
 upstreams   :
-    - https://github.com/openchamber/openchamber/releases/download/v2.2.0/OpenChamber-2.2.0-linux-x86_64.AppImage:
-        hash: 3982a24d1a0553bf56a9cdee53cd7510545739888b92724bd472e65217ce3f1e
-        unpack: false
-        rename: OpenChamber.AppImage
+    - https://github.com/openchamber/openchamber/archive/refs/tags/v2.2.0.tar.gz : e08ee6405e9224fd691fbcad6d68ca4e8e528e70a0d9e8320390d8da7f97271f
 description : |
     OpenChamber is a workspace for running, supervising and reviewing AI coding
     work, built on the OpenCode coding agent. It runs as a desktop app, in a
     browser, in an editor or on a phone.
+networking  : true
+builddeps   :
+    - binary(g++)
+    - binary(gcc)
+    - binary(gzip)
+    - binary(make)
+    - binary(nm)
+    - binary(node)
+    - binary(npm)
+    - binary(python3)
+    - binary(tar)
 rundeps     :
     - libayatana-appindicator
     - libnotify
     - opencode
     - soname(libXss.so.1(x86_64))
     - soname(libXtst.so.6(x86_64))
-# Electron and the packaged OpenCode CLI must not be stripped or debug-split
+# Electron and the bundled OpenCode CLI must not be stripped or debug-split
 debug       : false
 strip       : false
+environment : |
+    # Bun is not packaged, so provision it from npm into the build tree and put
+    # it on PATH for the root postinstall and the build scripts.
+    BUN_VERSION=$(node -p "require('%(workdir)/package.json').packageManager.replace('bun@', '')")
+    PATH="%(workdir)/.bun/node_modules/.bin:${PATH}"
 setup       : |
-    chmod +x %(sourcedir)/OpenChamber.AppImage
-    %(sourcedir)/OpenChamber.AppImage --appimage-extract
+    # Drop when updating past the release that fixes #4541
+    %patch %(pkgdir)/0001-fold-linked-pr-owner-case.patch
+
+    npm install --prefix %(workdir)/.bun "bun@${BUN_VERSION}"
+
+    # postinstall builds the SDK and built-in extensions, and fetches Electron
+    bun install --frozen-lockfile
+build       : |
+    cd packages/electron
+
+    bun run build:web-assets
+    bun run prepare:opencode-cli
+    bun run bundle:main
+    bun run rebuild:native
+
+    # Unpacked tree; no need to build (or run) an AppImage just to repackage it
+    node ./scripts/package.mjs --linux --x64 --dir
 install     : |
     openchamberdir=%(libdir)/%(name)
 
     %install_dir %(installroot)$openchamberdir
-    cp -a squashfs-root/. %(installroot)$openchamberdir
+    cp -a packages/electron/dist/linux-unpacked/. %(installroot)$openchamberdir
 
-    # AppImage runtime glue and the icons we install below
-    rm -f %(installroot)$openchamberdir/AppRun \
-        %(installroot)$openchamberdir/.DirIcon \
-        %(installroot)$openchamberdir/openchamber.svg
-
-    # Runtime libraries come from the system, see rundeps
-    rm -rf %(installroot)$openchamberdir/usr
+    # The bundled self updater cannot work from a packaged install
+    rm -f %(installroot)$openchamberdir/resources/app-update.yml
 
     # Foreign-platform native prebuilds are dead weight and add sonames for
     # architectures moss cannot resolve, so keep only linux-x64
@@ -58,9 +81,6 @@ install     : |
     # OpenChamber resolves <resources>/opencode-cli/opencode before anything on
     # PATH, and treats it as its own (so it does not try to self-update it).
     ln -sf /usr/bin/opencode %(installroot)$openchamberdir/resources/opencode-cli/opencode
-
-    # The bundled self updater cannot work from a packaged install
-    rm -f %(installroot)$openchamberdir/resources/app-update.yml
 
     %install_dir %(installroot)%(bindir)
     ln -srv %(installroot)$openchamberdir/openchamber %(installroot)%(bindir)/openchamber
