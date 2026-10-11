@@ -1,0 +1,6 @@
+releases:
+  id: ~ # No project on release-monitoring.org as of 2026-10-11
+  rss: https://github.com/openchamber/openchamber/releases.atom
+security:
+  # No known CPE, last checked 2026-10-11
+  cpe: ~

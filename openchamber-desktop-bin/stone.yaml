@@ -1,0 +1,73 @@
+#
+# SPDX-FileCopyrightText: © 2020-2026 Serpent OS Developers
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+name        : openchamber-desktop-bin
+version     : "2.2.0"
+release     : 1
+summary     : OpenChamber desktop client
+license     : MIT
+homepage    : https://openchamber.dev
+upstreams   :
+    - https://github.com/openchamber/openchamber/releases/download/v2.2.0/OpenChamber-2.2.0-linux-x86_64.AppImage:
+        hash: 3982a24d1a0553bf56a9cdee53cd7510545739888b92724bd472e65217ce3f1e
+        unpack: false
+        rename: OpenChamber.AppImage
+description : |
+    OpenChamber is a workspace for running, supervising and reviewing AI coding
+    work, built on the OpenCode coding agent. It runs as a desktop app, in a
+    browser, in an editor or on a phone.
+rundeps     :
+    - libayatana-appindicator
+    - libnotify
+    - opencode
+    - soname(libXss.so.1(x86_64))
+    - soname(libXtst.so.6(x86_64))
+# Electron and the packaged OpenCode CLI must not be stripped or debug-split
+debug       : false
+strip       : false
+setup       : |
+    chmod +x %(sourcedir)/OpenChamber.AppImage
+    %(sourcedir)/OpenChamber.AppImage --appimage-extract
+install     : |
+    openchamberdir=%(libdir)/%(name)
+
+    %install_dir %(installroot)$openchamberdir
+    cp -a squashfs-root/. %(installroot)$openchamberdir
+
+    # AppImage runtime glue and the icons we install below
+    rm -f %(installroot)$openchamberdir/AppRun \
+        %(installroot)$openchamberdir/.DirIcon \
+        %(installroot)$openchamberdir/openchamber.svg
+
+    # Runtime libraries come from the system, see rundeps
+    rm -rf %(installroot)$openchamberdir/usr
+
+    # Foreign-platform native prebuilds are dead weight and add sonames for
+    # architectures moss cannot resolve, so keep only linux-x64
+    natives=%(installroot)$openchamberdir/resources/app.asar.unpacked/node_modules
+    rm -rf $natives/node-pty/prebuilds/darwin-* \
+        $natives/node-pty/prebuilds/linux-arm64 \
+        $natives/node-pty/prebuilds/win32-*
+    rm -f $natives/bun-pty/rust-pty/target/release/librust_pty_arm64.* \
+        $natives/bun-pty/rust-pty/target/release/librust_pty.dylib \
+        $natives/@msgpackr-extract/msgpackr-extract-linux-x64/node.*.musl.node
+
+    # Use the packaged OpenCode CLI instead of the bundled ~210 MB copy.
+    # OpenChamber resolves <resources>/opencode-cli/opencode before anything on
+    # PATH, and treats it as its own (so it does not try to self-update it).
+    ln -sf /usr/bin/opencode %(installroot)$openchamberdir/resources/opencode-cli/opencode
+
+    # The bundled self updater cannot work from a packaged install
+    rm -f %(installroot)$openchamberdir/resources/app-update.yml
+
+    %install_dir %(installroot)%(bindir)
+    ln -srv %(installroot)$openchamberdir/openchamber %(installroot)%(bindir)/openchamber
+
+    %install_dir %(installroot)%(datadir)/icons/hicolor/scalable/apps
+    %install_file %(pkgdir)/openchamber.svg %(installroot)%(datadir)/icons/hicolor/scalable/apps/openchamber.svg
+    %install_file %(pkgdir)/openchamber.desktop -t %(installroot)%(datadir)/applications
+
+    # Fix permissions
+    find %(installroot) -type d -exec chmod 755 {} +

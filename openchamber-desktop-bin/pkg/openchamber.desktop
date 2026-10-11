@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=OpenChamber
+Comment=Electron desktop runtime for OpenChamber
+Exec=openchamber %U
+Terminal=false
+Type=Application
+Icon=openchamber
+StartupWMClass=openchamber
+Categories=Development;
