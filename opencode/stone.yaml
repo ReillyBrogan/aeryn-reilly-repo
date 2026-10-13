@@ -5,7 +5,7 @@
 #
 name        : opencode
 version     : "2.0.26"
-release     : 1
+release     : 2
 homepage    : https://github.com/anomalyco/opencode
 upstreams   :
     - git|https://github.com/anomalyco/opencode.git : 9b4ec5714d481559990db0a816d5dec19541a814
@@ -15,9 +15,17 @@ description : |
 license     : MIT
 networking  : true
 builddeps   :
+    - binary(g++)
+    - binary(gcc)
     - binary(git)
+    - binary(gzip)
     - binary(jq)
+    - binary(make)
+    - binary(nm)
+    - binary(node)
     - binary(npm)
+    - binary(python3)
+    - binary(tar)
 rundeps     :
     - binary(curl)
     - binary(rg)
@@ -28,14 +36,23 @@ environment : |
 setup       : |
     npx --yes bun@${BUN_VERSION} install --frozen-lockfile --ignore-scripts
 build       : |
+    # CLI
     cd packages/cli
     OPENCODE_VERSION=%(version) npx --yes bun@${BUN_VERSION} run ./script/build.ts --single --baseline --skip-install
+
+    # Desktop app. Production channel requires the CLI distribution we just built.
+    cd ../desktop
+    export OPENCODE_CHANNEL=prod
+    export OPENCODE_CLI_DIST=%(workdir)/packages/cli/dist
+    npx --yes bun@${BUN_VERSION} run prebuild
+    npx --yes bun@${BUN_VERSION} run build
+    npx --yes bun@${BUN_VERSION} x electron-builder --config electron-builder.config.ts --dir --publish never
 install     : |
+    opencodedir=%(libdir)/%(name)-desktop
+
+    # CLI
     %install_exe packages/cli/dist/cli-linux-x64-baseline/bin/opencode -t %(installroot)%(bindir)
 
-    %install_file LICENSE -t %(installroot)%(datadir)/licenses/%(name)
-
-    # Shell completions
     mkdir -p completions
     %(installroot)%(bindir)/opencode --completions bash > completions/opencode
     %(installroot)%(bindir)/opencode --completions zsh > completions/_opencode
@@ -43,6 +60,54 @@ install     : |
     %install_file completions/opencode -t %(installroot)%(bashcompletionsdir)
     %install_file completions/_opencode -t %(installroot)%(zshcompletionsdir)
     %install_file completions/opencode.fish -t %(installroot)%(fishcompletionsdir)
-# Bun-compiled binary must not be stripped or debug-split
+
+    # Desktop app (unpacked electron-builder output)
+    %install_dir %(installroot)$opencodedir
+    cp -a packages/desktop/dist/linux-unpacked/. %(installroot)$opencodedir/
+
+    # The built in updater cannot work from a packaged install
+    rm -f %(installroot)$opencodedir/resources/app-update.yml
+
+    # Use the packaged CLI instead of the bundled copy
+    rm -f %(installroot)$opencodedir/resources/opencode-cli
+    ln -sf /usr/bin/%(name) %(installroot)$opencodedir/resources/opencode-cli
+
+    %install_dir %(installroot)%(bindir)
+    ln -srv %(installroot)$opencodedir/ai.opencode.desktop %(installroot)%(bindir)/%(name)-desktop
+
+    # AppStream metainfo, desktop entry and icons. electron-builder only emits
+    # these for its deb/AppImage targets, not for the unpacked --dir output.
+    %install_dir %(installroot)%(datadir)/metainfo
+    %install_file packages/desktop/resources/ai.opencode.desktop.metainfo.xml %(installroot)%(datadir)/metainfo/ai.opencode.desktop.metainfo.xml
+
+    %install_dir %(installroot)%(datadir)/applications
+    %install_file %(pkgdir)/opencode-desktop.desktop %(installroot)%(datadir)/applications/ai.opencode.desktop.desktop
+
+    %install_dir %(installroot)%(datadir)/icons/hicolor/32x32/apps
+    %install_file packages/desktop/icons/prod/32x32.png %(installroot)%(datadir)/icons/hicolor/32x32/apps/ai.opencode.desktop.png
+    %install_dir %(installroot)%(datadir)/icons/hicolor/64x64/apps
+    %install_file packages/desktop/icons/prod/64x64.png %(installroot)%(datadir)/icons/hicolor/64x64/apps/ai.opencode.desktop.png
+    %install_dir %(installroot)%(datadir)/icons/hicolor/128x128/apps
+    %install_file packages/desktop/icons/prod/128x128.png %(installroot)%(datadir)/icons/hicolor/128x128/apps/ai.opencode.desktop.png
+
+    %install_file LICENSE -t %(installroot)%(datadir)/licenses/%(name)
+
+# Bun-compiled binary and Electron must not be stripped or debug-split
 debug       : false
 strip       : false
+packages    :
+    - "opencode-desktop":
+        summary: OpenCode desktop client
+        description: |
+            The OpenCode desktop application.
+        rundeps:
+            - binary(rg)
+            - binary(xdg-open)
+            - libnotify
+            - opencode
+        paths:
+            - /usr/bin/opencode-desktop
+            - /usr/lib/opencode-desktop/
+            - /usr/share/applications/ai.opencode.desktop.desktop
+            - /usr/share/icons/hicolor/*/apps/ai.opencode.desktop.png
+            - /usr/share/metainfo/ai.opencode.desktop.metainfo.xml
