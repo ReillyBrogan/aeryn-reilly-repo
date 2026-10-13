@@ -1,0 +1,52 @@
+#
+# SPDX-FileCopyrightText: © 2020-2026 Serpent OS Developers
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+name        : openhands
+version     : "1.27.1"
+release     : 1
+homepage    : https://github.com/OpenHands/OpenHands
+upstreams   :
+    - https://github.com/OpenHands/OpenHands/releases/download/v1.27.1/agent-canvas_1.27.1_amd64.deb:
+        hash: 1927041859075e07543eb3cf88a6e6e80ee01ed88e97deb2d5005f98c662bfc5
+        unpack: false
+        rename: agent-canvas.deb
+summary     : OpenHands Agent Canvas
+description : |
+    OpenHands Agent Canvas is a self-hosted developer control center for coding
+    agents. It runs the OpenHands agent server locally and can drive local,
+    remote and cloud backends from a single interface.
+license     : MIT
+builddeps   :
+    - binary(bsdtar-static)
+rundeps     :
+    - binary(xdg-open)
+    - libnotify
+# The bundled Electron and Node.js runtimes must not be stripped or debug-split
+debug       : false
+strip       : false
+install     : |
+    %install_dir %(installroot)
+    bsdtar-static -O -xf %(sourcedir)/agent-canvas.deb data.tar.xz | bsdtar-static -C "%(installroot)" -xJf -
+
+    # The Debian package installs the app under /opt; relocate into /usr/lib
+    openhandsdir=%(libdir)/%(name)
+    %install_dir %(installroot)$openhandsdir
+    cp -a "%(installroot)/opt/OpenHands Agent Canvas/." %(installroot)$openhandsdir/
+    rm -rf %(installroot)/opt
+
+    # Drop Debian specific files and the built in updater
+    rm -rf %(installroot)/usr/share/doc
+    rm -f %(installroot)$openhandsdir/resources/app-update.yml
+    rm -f %(installroot)$openhandsdir/resources/apparmor-profile
+
+    # Launcher
+    %install_dir %(installroot)%(bindir)
+    ln -srv %(installroot)$openhandsdir/agent-canvas %(installroot)%(bindir)/%(name)
+
+    # Point the desktop entry at the launcher
+    sed -i "s|Exec=.*|Exec=%(name) %%U|" %(installroot)%(datadir)/applications/agent-canvas.desktop
+
+    # Fix permissions
+    find %(installroot) -type d -exec chmod 755 {} +

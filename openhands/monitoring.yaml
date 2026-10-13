@@ -1,0 +1,6 @@
+releases:
+  id: ~ # No project on release-monitoring.org as of 2026-10-12
+  rss: https://github.com/OpenHands/OpenHands/releases.atom
+security:
+  # No known CPE, last checked 2026-10-12
+  cpe: ~
