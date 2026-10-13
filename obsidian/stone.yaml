@@ -1,17 +1,17 @@
 #
-# SPDX-FileCopyrightText: © 2020-2024 Serpent OS Developers
+# SPDX-FileCopyrightText: © 2020-2026 Serpent OS Developers
 #
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : obsidian
-version     : "1.12.7"
-release     : 2
+version     : "1.14.4"
+release     : 3
 summary     : Obsidian
 license     : LicenseRef-Obsidian
 homepage    : https://vesktop.vencord.dev
 upstreams   :
-    - https://github.com/obsidianmd/obsidian-releases/releases/download/v1.12.7/obsidian-1.12.7.tar.gz:
-        hash: fcbe08b111d9c1fdb09b9c08952b06e1c829c62163eba2584c4b4ec859be079d
+    - https://github.com/obsidianmd/obsidian-releases/releases/download/v1.14.4/obsidian-1.14.4.tar.gz:
+        hash: e70b7cd63787e7f798a84fec453f5c446b91877bd3f612e8fb98e9b76cc81120
 description : |
     Obsidian
 builddeps   :

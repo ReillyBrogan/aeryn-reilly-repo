@@ -4,11 +4,11 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : opencode
-version     : "2.0.26"
-release     : 2
+version     : "2.0.27"
+release     : 3
 homepage    : https://github.com/anomalyco/opencode
 upstreams   :
-    - git|https://github.com/anomalyco/opencode.git : 9b4ec5714d481559990db0a816d5dec19541a814
+    - git|https://github.com/anomalyco/opencode.git : 1f4d07a4a519185955ae8ab2ea3607805509e386
 summary     : The open source coding agent
 description : |
     OpenCode is an open source AI coding agent that helps you write and run code with any AI model.

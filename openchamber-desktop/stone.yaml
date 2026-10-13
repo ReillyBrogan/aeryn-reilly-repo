@@ -4,13 +4,13 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : openchamber-desktop
-version     : "2.2.0"
-release     : 1
+version     : "2.3.1"
+release     : 2
 summary     : OpenChamber desktop client
 license     : MIT
 homepage    : https://openchamber.dev
 upstreams   :
-    - https://github.com/openchamber/openchamber/archive/refs/tags/v2.2.0.tar.gz : e08ee6405e9224fd691fbcad6d68ca4e8e528e70a0d9e8320390d8da7f97271f
+    - https://github.com/openchamber/openchamber/archive/refs/tags/v2.3.1.tar.gz : 83494b0ff53597ba17a9945e3bd993d1a3767d21973d5e2f675f255debc7b808
 description : |
     OpenChamber is a workspace for running, supervising and reviewing AI coding
     work, built on the OpenCode coding agent. It runs as a desktop app, in a
@@ -41,9 +41,6 @@ environment : |
     BUN_VERSION=$(node -p "require('%(workdir)/package.json').packageManager.replace('bun@', '')")
     PATH="%(workdir)/.bun/node_modules/.bin:${PATH}"
 setup       : |
-    # Drop when updating past the release that fixes #4541
-    %patch %(pkgdir)/0001-fold-linked-pr-owner-case.patch
-
     npm install --prefix %(workdir)/.bun "bun@${BUN_VERSION}"
 
     # postinstall builds the SDK and built-in extensions, and fetches Electron

@@ -1,14 +1,14 @@
 #
-# SPDX-FileCopyrightText: © 2020-2025 Serpent OS Developers
+# SPDX-FileCopyrightText: © 2020-2026 Serpent OS Developers
 #
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : dagger
-version     : 0.20.7
-release     : 8
+version     : "0.21.10"
+release     : 9
 homepage    : https://dagger.io/
 upstreams   :
-    - https://github.com/dagger/dagger/archive/refs/tags/v0.20.7.tar.gz : 99f4bcdf4339c42372190bba78297da20cda5509ba74f43872d47be37045c234
+    - https://github.com/dagger/dagger/archive/refs/tags/v0.21.10.tar.gz : 4177831173a91b8269ca3269d53767fb0b4217d181cdb293612a14ce2f948da0
 summary     : A portable devkit for CI/CD pipelines
 description : |
     A portable devkit for CI/CD pipelines
@@ -25,10 +25,14 @@ build       : |
 
     mkdir build
 
+    # x/net v0.54.0 (pinned by dagger) drops http2.TrailerPrefix under Go 1.27
+    # unless the legacy implementation is selected (grpc-go#9206); drop this
+    # once dagger upgrades x/net to >= v0.55.0
     go build -v \
         -buildmode=pie \
         -mod=readonly \
         -modcacherw \
+        -tags http2legacy \
         -ldflags "-compressdwarf=false \
         -linkmode external \
         -extldflags '${LDFLAGS}' \
