@@ -4,13 +4,13 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : openchamber-desktop
-version     : "2.3.1"
-release     : 2
+version     : "2.5.0"
+release     : 3
 summary     : OpenChamber desktop client
 license     : MIT
 homepage    : https://openchamber.dev
 upstreams   :
-    - https://github.com/openchamber/openchamber/archive/refs/tags/v2.3.1.tar.gz : 83494b0ff53597ba17a9945e3bd993d1a3767d21973d5e2f675f255debc7b808
+    - https://github.com/openchamber/openchamber/archive/refs/tags/v2.5.0.tar.gz : 0aab4fc65ad5fc47d91b101048e5462d25ff1df1151b8fed6ee59ffbab6e573f
 description : |
     OpenChamber is a workspace for running, supervising and reviewing AI coding
     work, built on the OpenCode coding agent. It runs as a desktop app, in a
@@ -25,8 +25,10 @@ builddeps   :
     - binary(node)
     - binary(npm)
     - binary(python3)
+    - binary(rg)
     - binary(tar)
 rundeps     :
+    - binary(rg)
     - libayatana-appindicator
     - libnotify
     - opencode
@@ -53,6 +55,11 @@ build       : |
     bun run bundle:main
     bun run rebuild:native
 
+    # Upstream's packaging check wants the resource present; point it at the
+    # system binary, which is what the installed package uses.
+    mkdir -p resources/ripgrep
+    ln -sf /usr/bin/rg resources/ripgrep/rg
+
     # Unpacked tree; no need to build (or run) an AppImage just to repackage it
     node ./scripts/package.mjs --linux --x64 --dir
 install     : |
@@ -78,6 +85,10 @@ install     : |
     # OpenChamber resolves <resources>/opencode-cli/opencode before anything on
     # PATH, and treats it as its own (so it does not try to self-update it).
     ln -sf /usr/bin/opencode %(installroot)$openchamberdir/resources/opencode-cli/opencode
+
+    # Use the system ripgrep instead of a bundled copy
+    %install_dir %(installroot)$openchamberdir/resources/ripgrep
+    ln -sf /usr/bin/rg %(installroot)$openchamberdir/resources/ripgrep/rg
 
     %install_dir %(installroot)%(bindir)
     ln -srv %(installroot)$openchamberdir/openchamber %(installroot)%(bindir)/openchamber

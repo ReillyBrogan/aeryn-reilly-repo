@@ -55,8 +55,6 @@
 				"/usr/lib/tidal-hifi/chrome_200_percent.pak",
 				"/usr/lib/tidal-hifi/chrome_crashpad_handler",
 				"/usr/lib/tidal-hifi/icudtl.dat",
-				"/usr/lib/tidal-hifi/libEGL.so",
-				"/usr/lib/tidal-hifi/libGLESv2.so",
 				"/usr/lib/tidal-hifi/libffmpeg.so",
 				"/usr/lib/tidal-hifi/libvk_swiftshader.so",
 				"/usr/lib/tidal-hifi/libvulkan.so.1",
@@ -171,8 +169,6 @@
 			"name": "tidal-hifi",
 			"provides": [
 				"binary(tidal-hifi)",
-				"soname(tidal-hifi/libEGL.so(x86_64))",
-				"soname(tidal-hifi/libGLESv2.so(x86_64))",
 				"soname(tidal-hifi/libffmpeg.so(x86_64))",
 				"soname(tidal-hifi/libvk_swiftshader.so(x86_64))",
 				"soname(tidal-hifi/libvulkan.so.1(x86_64))"
@@ -180,6 +176,6 @@
 		}
 	},
 	"source-name": "tidal-hifi",
-	"source-release": "5",
-	"source-version": "8.1.3"
+	"source-release": "6",
+	"source-version": "9.0.0"
 }

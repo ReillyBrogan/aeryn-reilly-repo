@@ -2,4 +2,5 @@ releases:
   id: 391778
   rss: ~
 security:
+  # No known CPE, last checked 2026-10-20
   cpe: ~

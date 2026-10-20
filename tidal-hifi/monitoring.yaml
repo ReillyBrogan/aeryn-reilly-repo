@@ -1,0 +1,6 @@
+releases:
+  id: 388305
+  rss: ~
+security:
+  # No known CPE, last checked 2026-10-20
+  cpe: ~
