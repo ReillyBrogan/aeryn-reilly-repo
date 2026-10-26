@@ -99,7 +99,7 @@
 				"/usr/bin/opencode-desktop",
 				"/usr/lib/opencode-desktop/LICENSE.electron.txt",
 				"/usr/lib/opencode-desktop/LICENSES.chromium.html",
-				"/usr/lib/opencode-desktop/ai.opencode.desktop",
+				"/usr/lib/opencode-desktop/ai.opencode",
 				"/usr/lib/opencode-desktop/chrome-sandbox",
 				"/usr/lib/opencode-desktop/chrome_100_percent.pak",
 				"/usr/lib/opencode-desktop/chrome_200_percent.pak",
@@ -196,6 +196,6 @@
 		}
 	},
 	"source-name": "opencode",
-	"source-release": "4",
-	"source-version": "2.0.32"
+	"source-release": "5",
+	"source-version": "2.1.4"
 }
