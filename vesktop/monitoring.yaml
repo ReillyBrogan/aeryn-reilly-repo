@@ -1,5 +1,6 @@
 releases:
-  id: 372593
+  id: 372800
   rss: ~
 security:
+  # No known CPE, last checked 2026-10-26
   cpe: ~

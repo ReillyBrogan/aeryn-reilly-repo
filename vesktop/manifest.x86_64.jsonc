@@ -57,8 +57,6 @@
 				"/usr/lib/vesktop/chrome_200_percent.pak",
 				"/usr/lib/vesktop/chrome_crashpad_handler",
 				"/usr/lib/vesktop/icudtl.dat",
-				"/usr/lib/vesktop/libEGL.so",
-				"/usr/lib/vesktop/libGLESv2.so",
 				"/usr/lib/vesktop/libffmpeg.so",
 				"/usr/lib/vesktop/libvk_swiftshader.so",
 				"/usr/lib/vesktop/libvulkan.so.1",
@@ -130,8 +128,6 @@
 			"name": "vesktop",
 			"provides": [
 				"binary(vesktop)",
-				"soname(vesktop/libEGL.so(x86_64))",
-				"soname(vesktop/libGLESv2.so(x86_64))",
 				"soname(vesktop/libffmpeg.so(x86_64))",
 				"soname(vesktop/libvk_swiftshader.so(x86_64))",
 				"soname(vesktop/libvulkan.so.1(x86_64))"
@@ -139,6 +135,6 @@
 		}
 	},
 	"source-name": "vesktop",
-	"source-release": "4",
-	"source-version": "1.6.7"
+	"source-release": "5",
+	"source-version": "1.6.8"
 }
