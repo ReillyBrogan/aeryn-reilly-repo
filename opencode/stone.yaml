@@ -4,11 +4,11 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : opencode
-version     : "2.1.4"
-release     : 5
+version     : "2.2.2"
+release     : 6
 homepage    : https://github.com/anomalyco/opencode
 upstreams   :
-    - git|https://github.com/anomalyco/opencode.git : 68bc26b7da1990ce10ffecfbc1e09eb13aa5d824 # v2.1.4
+    - git|https://github.com/anomalyco/opencode.git : 098aa7fd6e02b03d6fc410f0b052038c7d4c5e81 # v2.2.2
 summary     : The open source coding agent
 description : |
     OpenCode is an open source AI coding agent that helps you write and run code with any AI model.
@@ -38,17 +38,17 @@ setup       : |
 build       : |
     # CLI
     cd packages/cli
-    # Build only the glibc x86_64 baseline CLI; --single also pulls in the musl
-    # baseline, whose prebuilt natives --skip-install leaves out
-    OPENCODE_VERSION=%(version) npx --yes bun@${BUN_VERSION} run ./script/build.ts \
-        --skip-install \
-        --target=opencode-linux-x64-baseline
+    # Build only the glibc x86_64 baseline CLI; --skip-install skips the
+    # all-platform native pty/opentui install, whose aarch64 musl prebuilts
+    # would be fetched for targets we do not build
+    OPENCODE_TARGET=linux-x64-baseline OPENCODE_VERSION=%(version) npx --yes bun@${BUN_VERSION} run ./script/build.ts \
+        --skip-install
 
-    # Desktop app. Production channel requires the CLI distribution we just built.
+    # Desktop app. Production channel requires the CLI distribution we just built,
+    # and target linux-x64 selects the baseline CLI and glibc x86_64 node-pty
     cd ../desktop
     export OPENCODE_CHANNEL=prod
-    export OPENCODE_CLI_DIST=%(workdir)/packages/cli/dist
-    npx --yes bun@${BUN_VERSION} run prebuild
+    export OPENCODE_TARGET=linux-x64
     npx --yes bun@${BUN_VERSION} run build
     npx --yes bun@${BUN_VERSION} x electron-builder --config electron-builder.config.ts --dir --publish never
 install     : |
