@@ -7,7 +7,7 @@ name        : mgba
 version     : 0.11.0
 release     : 1
 upstreams   :
-    - git|https://github.com/mgba-emu/mgba.git : 25ca25612eb806ad3a70f3209ccd93890ea0c2c6
+    - git|https://github.com/mgba-emu/mgba.git : 649314925ab32193bbf65a52ef9fae87fbaccb47
 summary     : mGBA Game Boy Advance Emulator
 description : |
     mGBA Game Boy Advance Emulator
