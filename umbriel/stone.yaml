@@ -1,0 +1,45 @@
+# SPDX-FileCopyrightText: 2025 AerynOS Developers
+# SPDX-License-Identifier: MPL-2.0
+
+name        : umbriel
+version     : "0+git.1968031d"
+release     : 1
+upstreams   :
+    - git|https://github.com/noctalia-dev/umbriel.git : 1968031d53a226c6f01b05b18fbff9b1d7179315
+homepage    : https://noctalia.dev/
+license     : MIT
+summary     : A Wayland compositor designed for daily use
+description : |
+    A Wayland compositor designed for daily use, with scrolling, dwindle, master, and stacking layouts, per-output workspaces, window rules, blur, shadows, and fluid animations.
+builddeps   :
+    - binary(wayland-scanner)
+    - pkgconfig(cairo)
+    - pkgconfig(egl)
+    - pkgconfig(gbm)
+    - pkgconfig(glesv2)
+    - pkgconfig(jemalloc)
+    - pkgconfig(lcms2)
+    - pkgconfig(libeis-1.0)
+    - pkgconfig(libinput)
+    - pkgconfig(nlohmann_json)
+    - pkgconfig(pangocairo)
+    - pkgconfig(pixman-1)
+    - pkgconfig(tomlplusplus)
+    - pkgconfig(wayland-client)
+    - pkgconfig(wayland-protocols)
+    - pkgconfig(wayland-server)
+    - pkgconfig(wlroots-0.20)
+    - pkgconfig(xcb)
+    - pkgconfig(xcb-ewmh)
+    - pkgconfig(xcb-icccm)
+    - pkgconfig(xcb-randr)
+    - pkgconfig(xcb-shape)
+    - pkgconfig(xkbcommon)
+rundeps     :
+    - xdg-desktop-portal-umbriel
+setup       : |
+    %meson
+build       : |
+    %meson_build
+install     : |
+    %meson_install

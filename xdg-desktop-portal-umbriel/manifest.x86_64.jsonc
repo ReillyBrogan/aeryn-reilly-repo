@@ -1,0 +1,54 @@
+/** Human readable report. This is not consumed by boulder */
+{
+	"manifest-version": "0.2",
+	"packages": {
+		"xdg-desktop-portal-umbriel": {
+			"build-depends": [
+				"pkgconfig(cairo)",
+				"pkgconfig(gbm)",
+				"pkgconfig(gio-2.0)",
+				"pkgconfig(gtk4)",
+				"pkgconfig(libdrm)",
+				"pkgconfig(libei-1.0)",
+				"pkgconfig(libpipewire-0.3)",
+				"pkgconfig(nlohmann_json)",
+				"pkgconfig(sdbus-c++)",
+				"pkgconfig(tomlplusplus)",
+				"pkgconfig(wayland-client)",
+				"pkgconfig(wayland-protocols)"
+			],
+			"depends": [
+				"interpreter(/usr/lib/ld-linux-x86-64.so.2(x86_64))",
+				"soname(libc.so.6(x86_64))",
+				"soname(libcairo.so.2(x86_64))",
+				"soname(libdrm.so.2(x86_64))",
+				"soname(libgbm.so.1(x86_64))",
+				"soname(libgcc_s.so.1(x86_64))",
+				"soname(libgio-2.0.so.0(x86_64))",
+				"soname(libglib-2.0.so.0(x86_64))",
+				"soname(libgobject-2.0.so.0(x86_64))",
+				"soname(libgtk-4.so.1(x86_64))",
+				"soname(libm.so.6(x86_64))",
+				"soname(libpipewire-0.3.so.0(x86_64))",
+				"soname(libsdbus-c++.so.2(x86_64))",
+				"soname(libstdc++.so.6(x86_64))",
+				"soname(libtomlplusplus.so.3(x86_64))",
+				"soname(libwayland-client.so.0(x86_64))",
+				"xdg-desktop-portal",
+				"xdg-desktop-portal-gtk"
+			],
+			"files": [
+				"/usr/lib/systemd/user/xdg-desktop-portal-umbriel.service",
+				"/usr/lib/xdg-desktop-portal-umbriel/umbriel-share-picker",
+				"/usr/lib/xdg-desktop-portal-umbriel/xdg-desktop-portal-umbriel",
+				"/usr/share/dbus-1/services/org.freedesktop.impl.portal.desktop.umbriel.service",
+				"/usr/share/xdg-desktop-portal/portals/umbriel.portal",
+				"/usr/share/xdg-desktop-portal/umbriel-portals.conf"
+			],
+			"name": "xdg-desktop-portal-umbriel"
+		}
+	},
+	"source-name": "xdg-desktop-portal-umbriel",
+	"source-release": "1",
+	"source-version": "0+git.79f08759"
+}

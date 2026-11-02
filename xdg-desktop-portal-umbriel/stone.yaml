@@ -1,0 +1,35 @@
+# SPDX-FileCopyrightText: 2026 aerynOS Developers
+# SPDX-License-Identifier: MPL-2.0
+
+name        : xdg-desktop-portal-umbriel
+version     : "0+git.79f08759"
+release     : 1
+upstreams   :
+    - git|https://github.com/noctalia-dev/xdg-desktop-portal-umbriel.git : 79f087598d596ae8a81dff1036d0ab3b5c446584
+homepage    : https://noctalia.dev/
+license     : MIT
+summary     : XDG Desktop Portal for Umbriel
+description : |
+    An xdg-desktop-portal backend for the Umbriel compositor
+builddeps   :
+    - pkgconfig(cairo)
+    - pkgconfig(gbm)
+    - pkgconfig(gio-2.0)
+    - pkgconfig(gtk4)
+    - pkgconfig(libdrm)
+    - pkgconfig(libei-1.0)
+    - pkgconfig(libpipewire-0.3)
+    - pkgconfig(nlohmann_json)
+    - pkgconfig(sdbus-c++)
+    - pkgconfig(tomlplusplus)
+    - pkgconfig(wayland-client)
+    - pkgconfig(wayland-protocols)
+rundeps     :
+    - xdg-desktop-portal
+    - xdg-desktop-portal-gtk
+setup       : |
+    %meson
+build       : |
+    %meson_build
+install     : |
+    %meson_install
