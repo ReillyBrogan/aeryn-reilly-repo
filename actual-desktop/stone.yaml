@@ -1,17 +1,17 @@
 #
-# SPDX-FileCopyrightText: © 2020-2026 Serpent OS Developers
+# SPDX-FileCopyrightText: 2026 aerynOS Developers
 #
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : actual-desktop
-version     : "26.10.0"
-release     : 4
+version     : "26.11.0"
+release     : 5
 summary     : actual
 license     : Distributable
 homepage    : https://webcatalog.io/en/desktop
 upstreams   :
-    - https://github.com/actualbudget/actual/releases/download/v26.10.0/Actual-linux-x86_64.AppImage:
-        hash: 21455ba3bfb985e969ed2b5aeebde8a0aeec8836351813c07ea63267e1f47b7b
+    - https://github.com/actualbudget/actual/releases/download/v26.11.0/Actual-linux-x86_64.AppImage:
+        hash: cc4d555a8bde6f74a3dd0eb4c0dda9c13d44d69806874861d595b51e1e4b2080
         unpack: false
         rename: Actual.AppImage
 description : |

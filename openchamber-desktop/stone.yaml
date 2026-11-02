@@ -1,16 +1,16 @@
 #
-# SPDX-FileCopyrightText: © 2020-2026 Serpent OS Developers
+# SPDX-FileCopyrightText: 2026 aerynOS Developers
 #
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : openchamber-desktop
-version     : "2.5.3"
-release     : 5
+version     : "2.6.0"
+release     : 6
 summary     : OpenChamber desktop client
 license     : MIT
 homepage    : https://openchamber.dev
 upstreams   :
-    - https://github.com/openchamber/openchamber/archive/refs/tags/v2.5.3.tar.gz : 41780c49fcf3603f5329a683edc98e1861eb4a305fcd443a6cff970ab23c3216
+    - https://github.com/openchamber/openchamber/archive/refs/tags/v2.6.0.tar.gz : b830175897c319dad314a126d1a9b16d7f1b479a2e811681abed674a134476ca
 description : |
     OpenChamber is a workspace for running, supervising and reviewing AI coding
     work, built on the OpenCode coding agent. It runs as a desktop app, in a

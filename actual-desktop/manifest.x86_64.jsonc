@@ -187,23 +187,6 @@
 				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/better-sqlite3/lib/util.js",
 				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/better-sqlite3/lib/win32-arm64.js",
 				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/better-sqlite3/lib/win32-x64.js",
-				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/better-sqlite3/node_modules/node-addon-api/LICENSE.md",
-				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/better-sqlite3/node_modules/node-addon-api/common.gypi",
-				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/better-sqlite3/node_modules/node-addon-api/except.gypi",
-				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/better-sqlite3/node_modules/node-addon-api/index.js",
-				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/better-sqlite3/node_modules/node-addon-api/napi-inl.deprecated.h",
-				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/better-sqlite3/node_modules/node-addon-api/napi-inl.h",
-				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/better-sqlite3/node_modules/node-addon-api/napi.h",
-				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/better-sqlite3/node_modules/node-addon-api/node_addon_api.gyp",
-				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/better-sqlite3/node_modules/node-addon-api/node_api.gyp",
-				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/better-sqlite3/node_modules/node-addon-api/noexcept.gypi",
-				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/better-sqlite3/node_modules/node-addon-api/nothing.c",
-				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/better-sqlite3/node_modules/node-addon-api/package-support.json",
-				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/better-sqlite3/node_modules/node-addon-api/package.json",
-				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/better-sqlite3/node_modules/node-addon-api/tools/README.md",
-				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/better-sqlite3/node_modules/node-addon-api/tools/check-napi.js",
-				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/better-sqlite3/node_modules/node-addon-api/tools/clang-format.js",
-				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/better-sqlite3/node_modules/node-addon-api/tools/conversion.js",
 				"/usr/lib/actual-desktop/resources/app.asar.unpacked/node_modules/better-sqlite3/package.json",
 				"/usr/lib/actual-desktop/resources/extra-resources/linux/com.actualbudget.actual.metainfo.xml",
 				"/usr/lib/actual-desktop/snapshot_blob.bin",
@@ -231,6 +214,6 @@
 		}
 	},
 	"source-name": "actual-desktop",
-	"source-release": "4",
-	"source-version": "26.10.0"
+	"source-release": "5",
+	"source-version": "26.11.0"
 }

@@ -1,5 +1,6 @@
 releases:
-  id: 372593
-  rss: ~
+  id: ~ # No project on release-monitoring.org as of 2026-11-02
+  rss: https://github.com/actualbudget/actual/releases.atom
 security:
+  # No known CPE, last checked 2026-11-02
   cpe: ~
