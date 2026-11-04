@@ -1,28 +1,23 @@
 #
-# SPDX-FileCopyrightText: © 2020-2026 Serpent OS Developers
+# SPDX-FileCopyrightText: 2026 aerynOS Developers
 #
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : obsidian
-version     : "1.14.5"
-release     : 4
-summary     : Obsidian
+version     : "1.15.0"
+release     : 5
+summary     : Note-taking app for local Markdown knowledge bases
 license     : LicenseRef-Obsidian
-homepage    : https://vesktop.vencord.dev
+homepage    : https://obsidian.md
 upstreams   :
-    - https://github.com/obsidianmd/obsidian-releases/releases/download/v1.14.5/obsidian-1.14.5.tar.gz:
-        hash: 1bc6547c889d7d02c3f2c5b55884cba14980bfac4ada32c0bdc6ec6db542aaf8
+    - https://github.com/obsidianmd/obsidian-releases/releases/download/v1.15.0/obsidian-1.15.0.tar.gz:
+        hash: 75594ae09914ca0191dde13c0697dee653322287a3a806c15519332d9ada14d3
 description : |
-    Obsidian
+    Knowledge base and note-taking application that works on local Markdown files
 builddeps   :
-    - binary(ar)
-    - binary(bsdtar-static)
     - binary(ln)
 rundeps     :
     - binary(xdg-open)
-    # - binary(python3)
-    # - soname(libXss.so.1(x86_64))
-    # - soname(libatomic.so.1(x86_64))
 debug       : false
 strip       : false
 install     : |

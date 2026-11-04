@@ -1,16 +1,16 @@
 #
-# SPDX-FileCopyrightText: © 2020-2026 Serpent OS Developers
+# SPDX-FileCopyrightText: 2026 aerynOS Developers
 #
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : tidal-hifi
-version     : "9.0.0"
-release     : 6
+version     : "9.0.1"
+release     : 7
 summary     : TIDAL music streaming desktop client
 license     : MIT
 homepage    : https://github.com/Mastermindzh/tidal-hifi
 upstreams   :
-    - https://github.com/Mastermindzh/tidal-hifi/archive/refs/tags/9.0.0.tar.gz: fa4f624e76b260d42522ca364e6b76ba81606f1f86c1878cd7068c2df96670cd
+    - https://github.com/Mastermindzh/tidal-hifi/archive/refs/tags/9.0.1.tar.gz: 771adb3a4a01898f927b85266f240923a2a0b183aa6054c05738450654213d97
 description : |
     TIDAL Hi-Fi is an Electron wrapper for the TIDAL web player, with Widevine DRM playback support.
 networking  : true
