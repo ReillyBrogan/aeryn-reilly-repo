@@ -1,17 +1,17 @@
 #
-# SPDX-FileCopyrightText: © 2020-2026 Serpent OS Developers
+# SPDX-FileCopyrightText: 2026 aerynOS Developers
 #
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : vesktop
-version     : "1.6.8"
-release     : 5
+version     : "1.6.9"
+release     : 6
 summary     : Vesktop
 license     : Distributable
 homepage    : https://vesktop.vencord.dev
 upstreams   :
-    - https://github.com/Vencord/Vesktop/releases/download/v1.6.8/vesktop-1.6.8.tar.gz:
-        hash: 477dc07e9da85cf3f86b890f00cebe328d82ef62a40790bb515f18de38845a46
+    - https://github.com/Vencord/Vesktop/releases/download/v1.6.9/vesktop-1.6.9.tar.gz:
+        hash: c9eabe5e0a6dc1ee3f48a32f9b876ecbf938738fef1a76bc2350eb82f3bc8517
 description : |
     Vesktop
 builddeps   :

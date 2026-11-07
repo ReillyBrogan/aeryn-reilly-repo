@@ -2,10 +2,10 @@
 # SPDX-License-Identifier: MPL-2.0
 
 name        : xdg-desktop-portal-umbriel
-version     : "0+git.79f08759"
-release     : 1
+version     : "0~git.56951426"
+release     : 2
 upstreams   :
-    - git|https://github.com/noctalia-dev/xdg-desktop-portal-umbriel.git : 79f087598d596ae8a81dff1036d0ab3b5c446584
+    - git|https://github.com/noctalia-dev/xdg-desktop-portal-umbriel.git : 56951426eb9931db3f1c57348f226c2427fba4f3
 homepage    : https://noctalia.dev/
 license     : MIT
 summary     : XDG Desktop Portal for Umbriel

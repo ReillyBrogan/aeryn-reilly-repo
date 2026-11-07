@@ -2,12 +2,12 @@
 # SPDX-License-Identifier: MPL-2.0
 
 name        : dux-shell
-version     : "2.1.0"
-release     : 2
+version     : "2.1.1"
+release     : 3
 homepage    : https://duxlabs.dev/
 upstreams   :
     # - https://github.com/duxlabs-dev/dux-shell/releases/download/v2.0.0/dms-source.tar.gz : 5e498216d3ad0b0d487848957ca6aec53862d1ba21582dbd4ef15483c88fd041
-    - git|https://github.com/ReillyBrogan/dux-shell.git : d9a498d9c07df80085deef900b01d57f7f95d49e
+    - git|https://github.com/ReillyBrogan/dux-shell.git : 41ca987f6e77b5e689ada0d8e21192e8d8a28ef0
 summary     : Desktop shell for wayland compositor
 description : |
     Dux Shell (dms) is a Wayland desktop shell built with Quickshell and Go. It serves a purpose similar to GNOME Shell or KDE Plasma, providing a unified interface for launching applications, managing windows, managing hardware interfaces, notifications, and much more.
