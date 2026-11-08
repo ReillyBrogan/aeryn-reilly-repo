@@ -1,0 +1,48 @@
+/** Human readable report. This is not consumed by boulder */
+{
+	"manifest-version": "0.2",
+	"packages": {
+		"zapfast": {
+			"build-depends": [
+				"binary(cmake)",
+				"binary(make)",
+				"liberation-fonts-ttf",
+				"pkgconfig(alsa)",
+				"pkgconfig(libpipewire-0.3)",
+				"pkgconfig(libwebp)",
+				"pkgconfig(openssl)",
+				"pkgconfig(opus)"
+			],
+			"depends": [
+				"interpreter(/usr/lib/ld-linux-x86-64.so.2(x86_64))",
+				"soname(ld-linux-x86-64.so.2(x86_64))",
+				"soname(libasound.so.2(x86_64))",
+				"soname(libc.so.6(x86_64))",
+				"soname(libcrypto.so.4(x86_64))",
+				"soname(libgcc_s.so.1(x86_64))",
+				"soname(libm.so.6(x86_64))",
+				"soname(libpipewire-0.3.so.0(x86_64))",
+				"soname(libstdc++.so.6(x86_64))",
+				"soname(libwebp.so.7(x86_64))",
+				"soname(libwebpdemux.so.2(x86_64))",
+				"soname(libwebpmux.so.3(x86_64))"
+			],
+			"files": [
+				"/usr/bin/zapfast",
+				"/usr/share/applications/zapfast.desktop",
+				"/usr/share/icons/hicolor/scalable/apps/zapfast.svg",
+				"/usr/share/licenses/zapfast/LICENSE",
+				"/usr/share/licenses/zapfast/THIRD-PARTY-NOTICES.md",
+				"/usr/share/zapfast/omarchy/zapfast-theme",
+				"/usr/share/zapfast/omarchy/zapfast.json.tpl"
+			],
+			"name": "zapfast",
+			"provides": [
+				"binary(zapfast)"
+			]
+		}
+	},
+	"source-name": "zapfast",
+	"source-release": "1",
+	"source-version": "0.21.1"
+}

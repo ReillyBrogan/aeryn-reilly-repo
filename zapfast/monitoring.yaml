@@ -1,0 +1,11 @@
+#
+# SPDX-FileCopyrightText: 2026 aerynOS Developers
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+releases:
+  id: ~
+  rss: https://github.com/crmne/zapfast/releases.atom
+security:
+  # No known CPE, last checked 2026-11-07
+  cpe: ~

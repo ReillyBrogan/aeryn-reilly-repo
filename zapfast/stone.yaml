@@ -1,0 +1,53 @@
+#
+# SPDX-FileCopyrightText: 2026 aerynOS Developers
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+name        : zapfast
+version     : "0.21.1"
+release     : 1
+homepage    : https://zapfast.rocks
+upstreams   :
+    - https://github.com/crmne/zapfast/archive/refs/tags/v0.21.1.tar.gz : 39437cdb259aa6576d19172e2b3e98a524619923497e4751cb0282e86bf54338
+summary     : Fast native WhatsApp client
+description : |
+    ZapFast is a native WhatsApp client for the desktop, written in Rust with egui. It has no browser engine, links to your phone as a companion device, and keeps your chats in an encrypted local archive.
+license     : MIT AND GPL-2.0-only
+networking  : true
+builddeps   :
+    - binary(cmake)
+    - binary(make)
+    - pkgconfig(alsa)
+    - pkgconfig(libpipewire-0.3)
+    - pkgconfig(libwebp)
+    - pkgconfig(openssl)
+    - pkgconfig(opus)
+    # - pkgconfig(sqlite3)
+    # - pkgconfig(libinotify)
+checkdeps   :
+    - liberation-fonts-ttf
+environment : |
+    # Use the system OpenSSL rather than the bundled one
+    export OPENSSL_NO_VENDOR=1
+    # This apparently uses a fork of sqlite that is incompatible with linking the system sqlite
+    # export LIBSQLITE3_SYS_USE_PKG_CONFIG=1
+    export OPUS_LIB_DIR=%(libdir)
+    # https://github.com/ralfbiedert/openh264-rs/issues/100
+    export __LIBWEBP_SYS_FORBID_BUILD=1
+setup       : |
+    %cargo_fetch
+build       : |
+    %cargo_build
+install     : |
+    %cargo_install
+
+    %install_file packaging/applications/zapfast.desktop -t %(installroot)%(datadir)/applications
+    %install_file packaging/icons/zapfast.svg -t %(installroot)%(datadir)/icons/hicolor/scalable/apps
+
+    %install_file contrib/omarchy/zapfast.json.tpl -t %(installroot)%(datadir)/%(name)/omarchy
+    %install_exe contrib/omarchy/zapfast-theme %(installroot)%(datadir)/%(name)/omarchy/zapfast-theme
+
+    %install_file LICENSE %(installroot)%(datadir)/licenses/%(name)/LICENSE
+    %install_file THIRD-PARTY-NOTICES.md %(installroot)%(datadir)/licenses/%(name)/THIRD-PARTY-NOTICES.md
+# check       : |
+#     %cargo_test --features demo
