@@ -1,11 +1,11 @@
-# SPDX-FileCopyrightText: 2025 AerynOS Developers
+# SPDX-FileCopyrightText: 2026 aerynOS Developers
 # SPDX-License-Identifier: MPL-2.0
 
 name        : umbriel
-version     : "0~git.ad46c7d14"
-release     : 3
+version     : "0~git.3898f8050"
+release     : 4
 upstreams   :
-    - git|https://github.com/noctalia-dev/umbriel.git : ad46c7d14ca1f59f2874f3df74773f781fb39c80
+    - git|https://github.com/noctalia-dev/umbriel.git : 3898f8050b8e30288010ec8d05b6a95de6f172eb
 homepage    : https://noctalia.dev/
 license     : MIT
 summary     : A Wayland compositor designed for daily use
@@ -19,8 +19,12 @@ builddeps   :
     - pkgconfig(glesv2)
     - pkgconfig(jemalloc)
     - pkgconfig(lcms2)
+    - pkgconfig(libdisplay-info)
+    - pkgconfig(libdrm)
     - pkgconfig(libeis-1.0)
     - pkgconfig(libinput)
+    - pkgconfig(libsystemd)
+    - pkgconfig(libudev)
     - pkgconfig(nlohmann_json)
     - pkgconfig(pangocairo)
     - pkgconfig(pixman-1)

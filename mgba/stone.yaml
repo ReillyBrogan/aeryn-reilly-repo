@@ -1,13 +1,13 @@
 #
-# SPDX-FileCopyrightText: © 2020-2024 Serpent OS Developers
+# SPDX-FileCopyrightText: 2026 aerynOS Developers
 #
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : mgba
 version     : 0.11.0
-release     : 1
+release     : 2
 upstreams   :
-    - git|https://github.com/mgba-emu/mgba.git : 649314925ab32193bbf65a52ef9fae87fbaccb47
+    - git|https://github.com/mgba-emu/mgba.git : 662dada8b79070bde93829a44d583c517fc5ec2d
 summary     : mGBA Game Boy Advance Emulator
 description : |
     mGBA Game Boy Advance Emulator
@@ -37,6 +37,8 @@ builddeps   :
 rundeps     :
     - qt6-wayland
 setup       : |
+    %patch %(pkgdir)/0001-test.patch
+
     %cmake
 build       : |
     %cmake_build

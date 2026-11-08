@@ -11,8 +11,12 @@
 				"pkgconfig(glesv2)",
 				"pkgconfig(jemalloc)",
 				"pkgconfig(lcms2)",
+				"pkgconfig(libdisplay-info)",
+				"pkgconfig(libdrm)",
 				"pkgconfig(libeis-1.0)",
 				"pkgconfig(libinput)",
+				"pkgconfig(libsystemd)",
+				"pkgconfig(libudev)",
 				"pkgconfig(nlohmann_json)",
 				"pkgconfig(pangocairo)",
 				"pkgconfig(pixman-1)",
@@ -98,6 +102,6 @@
 		}
 	},
 	"source-name": "umbriel",
-	"source-release": "3",
-	"source-version": "0~git.ad46c7d14"
+	"source-release": "4",
+	"source-version": "0~git.3898f8050"
 }

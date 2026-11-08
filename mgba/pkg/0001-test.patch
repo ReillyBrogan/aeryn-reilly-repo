@@ -1,0 +1,82 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Reilly Brogan <reilly@reillybrogan.com>
+Date: Fri, 30 Oct 2026 14:38:17 -0500
+Subject: [PATCH] test
+
+---
+ CHANGES                       |  1 +
+ src/platform/sdl/sdl-events.c | 22 +++++++++++++++-------
+ 2 files changed, 16 insertions(+), 7 deletions(-)
+
+diff --git a/CHANGES b/CHANGES
+index e06bc0f8b..5bf80934f 100644
+--- a/CHANGES
++++ b/CHANGES
+@@ -73,6 +73,7 @@ Other fixes:
+  - Scripting: Unset old callbacks when detaching emulator core
+  - SDL: Use SDL_PumpEvents to ensure hotplug events are caught (fixes mgba.io/i/3406)
+  - SDL: Fix controllers getting duplicated
++ - SDL: Fix controllers attached after startup having no key bindings
+  - SM83: Decode I/O-relative loads as ldh instead of ld (fixes mgba.io/i/3744)
+ Misc:
+  - 3DS: Change title ID to avoid conflict with commercial title (fixes mgba.io/i/3023)
+diff --git a/src/platform/sdl/sdl-events.c b/src/platform/sdl/sdl-events.c
+index 92941d92d..682a56659 100644
+--- a/src/platform/sdl/sdl-events.c
++++ b/src/platform/sdl/sdl-events.c
+@@ -344,9 +344,15 @@ void mSDLDetachPlayer(struct mSDLEvents* events, struct mSDLPlayer* player) {
+ 
+ void mSDLPlayerLoadConfig(struct mSDLPlayer* context, const struct Configuration* config) {
+ 	mInputMapLoad(context->bindings, SDL_BINDING_KEY, config);
++	// Load the base bindings even without an attached device, as controllers
++	// may be hotplugged in later and need these to map buttons to keys
++#if SDL_VERSION_ATLEAST(2, 0, 0)
++	mInputMapLoad(context->bindings, SDL_BINDING_CONTROLLER, config);
++#else
++	mInputMapLoad(context->bindings, SDL_BINDING_BUTTON, config);
++#endif
+ 	if (context->joystick) {
+ #if SDL_VERSION_ATLEAST(2, 0, 0)
+-		mInputMapLoad(context->bindings, SDL_BINDING_CONTROLLER, config);
+ 		char name[34] = {0};
+ #if SDL_VERSION_ATLEAST(2, 24, 0)
+ 		SDL_GUIDToString(SDL_JoystickGetGUID(context->joystick->joystick), name, sizeof(name));
+@@ -355,7 +361,6 @@ void mSDLPlayerLoadConfig(struct mSDLPlayer* context, const struct Configuration
+ #endif
+ 		mInputProfileLoad(context->bindings, SDL_BINDING_CONTROLLER, config, name);
+ #else
+-		mInputMapLoad(context->bindings, SDL_BINDING_BUTTON, config);
+ 		const char* name = SDL_JoystickName(SDL_JoystickIndex(context->joystick->joystick));
+ 		if (!name) {
+ 			return;
+@@ -509,13 +514,16 @@ void mSDLUpdateJoysticks(struct mSDLEvents* events, const struct Configuration*
+ 				if (!events->preferredJoysticks[i].type || strcmp(events->preferredJoysticks[i].type, joystickName) != 0) {
+ 					continue;
+ 				}
+-				if (events->preferredJoysticks[i].serial && strcmp(events->preferredJoysticks[i].type, joystickName) != 0) {
++#if SDL_VERSION_ATLEAST(2, 0, 14)
++				const char* serial = SDL_JoystickGetSerial(joystick->joystick);
++				if (events->preferredJoysticks[i].serial && serial && strcmp(events->preferredJoysticks[i].serial, serial) != 0) {
+ 					continue;
+ 				}
++#endif
+ 				mLOG(SDL_EVENTS, DEBUG, "Joystick matched player %" PRIz "i preferred device", i + 1);
+ 				events->players[i]->joystick = joystick;
+-				if (config && joystickName[0]) {
+-					mInputProfileLoad(events->players[i]->bindings, SDL_BINDING_CONTROLLER, config, joystickName);
++				if (config) {
++					mSDLPlayerLoadConfig(events->players[i], config);
+ 				}
+ 				return;
+ 			}
+@@ -527,8 +535,8 @@ void mSDLUpdateJoysticks(struct mSDLEvents* events, const struct Configuration*
+ 				}
+ 				mLOG(SDL_EVENTS, DEBUG, "Unmatched joystick assigned to player %" PRIz "i", i + 1);
+ 				events->players[i]->joystick = joystick;
+-				if (config && joystickName[0]) {
+-					mInputProfileLoad(events->players[i]->bindings, SDL_BINDING_CONTROLLER, config, joystickName);
++				if (config) {
++					mSDLPlayerLoadConfig(events->players[i], config);
+ 				}
+ 				break;
+ 			}
