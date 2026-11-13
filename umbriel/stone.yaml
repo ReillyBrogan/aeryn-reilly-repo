@@ -2,10 +2,10 @@
 # SPDX-License-Identifier: MPL-2.0
 
 name        : umbriel
-version     : "0~git.3898f8050"
-release     : 4
+version     : "0~git.33a782dc7"
+release     : 5
 upstreams   :
-    - git|https://github.com/noctalia-dev/umbriel.git : 3898f8050b8e30288010ec8d05b6a95de6f172eb
+    - git|https://github.com/noctalia-dev/umbriel.git : 33a782dc750e78f0ef2d21fd9d3df33229ae06f9
 homepage    : https://noctalia.dev/
 license     : MIT
 summary     : A Wayland compositor designed for daily use
