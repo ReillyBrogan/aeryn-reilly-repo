@@ -1,0 +1,27 @@
+From 37c96f89f931739380ee6329051fd1613b575202 Mon Sep 17 00:00:00 2001
+From: Reilly Brogan <reilly@reillybrogan.com>
+Date: Sun, 15 Nov 2026 22:30:00 -0600
+Subject: [PATCH] common: include <cstring> in dynamic_library.cpp
+
+std::strncmp() was only reachable through a transitive include that
+newer libstdc++ releases no longer provide.
+
+Origin: vendor
+Forwarded: not-needed
+Last-Update: 2026-11-15
+---
+ src/common/dynamic_library.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/common/dynamic_library.cpp b/src/common/dynamic_library.cpp
+index 566fbed..aaa35d4 100644
+--- a/src/common/dynamic_library.cpp
++++ b/src/common/dynamic_library.cpp
+@@ -1,6 +1,7 @@
+ // SPDX-FileCopyrightText: 2019 Dolphin Emulator Project
+ // SPDX-License-Identifier: GPL-2.0-or-later
+ 
++#include <cstring>
+ #include <string>
+ #include <utility>
+ 

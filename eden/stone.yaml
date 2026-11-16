@@ -1,0 +1,70 @@
+#
+# SPDX-FileCopyrightText: 2026 aerynOS Developers
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+name        : eden
+version     : "0.2.1"
+release     : 1
+upstreams   :
+    - git|https://git.eden-emu.dev/eden-emu/eden.git : 58c1e20ee58efa3900ba616207d460886214480b # v0.2.1
+summary     : Eden Nintendo Switch Emulator
+description : |
+    A free and open source Switch 1 emulator derived from Yuzu and Sudachi.
+license     : GPL-3.0-or-later
+homepage    : https://eden-emu.dev/
+# CPM fetches the externals aerynOS does not package (enet, cubeb, quazip, sirit, ...)
+networking  : true
+builddeps   :
+    - binary(glslangValidator)
+    - binary(patch)
+    - cmake(Boost)
+    - cmake(Qt6Charts)
+    - cmake(Qt6Core)
+    - cmake(Qt6DBus)
+    - cmake(Qt6GuiPrivate)
+    - cmake(Qt6Widgets)
+    - cmake(SDL2)
+    - cmake(SPIRV-Tools)
+    - cmake(VulkanHeaders)
+    - cmake(VulkanUtilityLibraries)
+    - pkgconfig(alsa)
+    - pkgconfig(fmt)
+    - pkgconfig(gamemode)
+    - pkgconfig(jack)
+    - pkgconfig(libavcodec)
+    - pkgconfig(libavfilter)
+    - pkgconfig(libavutil)
+    - pkgconfig(liblz4)
+    - pkgconfig(libpulse)
+    - pkgconfig(libswscale)
+    - pkgconfig(libusb-1.0)
+    - pkgconfig(libzstd)
+    - pkgconfig(nlohmann_json)
+    - pkgconfig(openssl)
+    - pkgconfig(opus)
+    - pkgconfig(x11)
+    - pkgconfig(zlib)
+rundeps     :
+    - qt6-wayland
+    # gamemode_client.h dlopens this at runtime
+    - soname(libgamemode.so.0)
+setup       : |
+    # boulder's shallow clone cannot git describe, so pin the build version
+    printf 'v%(version)' > GIT-TAG
+    printf 'v%(version)' > GIT-RELEASE
+
+    %patch %(pkgdir)/0001-common-add-missing-cstring-include.patch
+    %patch %(pkgdir)/0002-externals-patch-httplib-for-openssl-4.patch
+    %patch %(pkgdir)/0003-common-include-fmt-format.patch
+
+    %cmake \
+        -DENABLE_UPDATE_CHECKER=OFF \
+        -DENABLE_WEB_SERVICE=OFF \
+        -DTITLE_BAR_FORMAT_IDLE="eden %(version) {}" \
+        -DTITLE_BAR_FORMAT_RUNNING="eden | %(version) {}" \
+        -DYUZU_TESTS=OFF
+build       : |
+    %cmake_build
+install     : |
+    %cmake_install
