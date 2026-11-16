@@ -7,7 +7,7 @@ name        : eden
 version     : "0.2.1"
 release     : 1
 upstreams   :
-    - git|https://git.eden-emu.dev/eden-emu/eden.git : 58c1e20ee58efa3900ba616207d460886214480b # v0.2.1
+    - git|https://git.eden-emu.dev/eden-emu/eden.git : b4e39d9ae412eebcc896759eedd58226d43a43c5 # v0.2.1
 summary     : Eden Nintendo Switch Emulator
 description : |
     A free and open source Switch 1 emulator derived from Yuzu and Sudachi.
@@ -19,12 +19,13 @@ builddeps   :
     - binary(glslangValidator)
     - binary(patch)
     - cmake(Boost)
+    - cmake(LLVM)
     - cmake(Qt6Charts)
     - cmake(Qt6Core)
     - cmake(Qt6DBus)
     - cmake(Qt6GuiPrivate)
     - cmake(Qt6Widgets)
-    - cmake(SDL2)
+    - cmake(SDL3)
     - cmake(SPIRV-Tools)
     - cmake(VulkanHeaders)
     - cmake(VulkanUtilityLibraries)
@@ -48,17 +49,18 @@ builddeps   :
 rundeps     :
     - qt6-wayland
     # gamemode_client.h dlopens this at runtime
-    - soname(libgamemode.so.0)
+    - soname(libgamemode.so.0(x86_64))
 setup       : |
     # boulder's shallow clone cannot git describe, so pin the build version
     printf 'v%(version)' > GIT-TAG
     printf 'v%(version)' > GIT-RELEASE
 
     %patch %(pkgdir)/0001-common-add-missing-cstring-include.patch
-    %patch %(pkgdir)/0002-externals-patch-httplib-for-openssl-4.patch
-    %patch %(pkgdir)/0003-common-include-fmt-format.patch
+    # %patch %(pkgdir)/0002-externals-patch-httplib-for-openssl-4.patch
+    # %patch %(pkgdir)/0003-common-include-fmt-format.patch
 
     %cmake \
+        -DDYNARMIC_USE_LLVM=ON \
         -DENABLE_UPDATE_CHECKER=OFF \
         -DENABLE_WEB_SERVICE=OFF \
         -DTITLE_BAR_FORMAT_IDLE="eden %(version) {}" \
@@ -68,3 +70,6 @@ build       : |
     %cmake_build
 install     : |
     %cmake_install
+# dynarmic/xbyak are ODR-sensitive, LTO corrupts the JIT backend
+tuning      :
+    - lto: false
