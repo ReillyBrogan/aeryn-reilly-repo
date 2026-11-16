@@ -4,13 +4,13 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : openchamber-desktop
-version     : "2.7.1"
-release     : 9
+version     : "2.7.2"
+release     : 10
 summary     : OpenChamber desktop client
 license     : MIT
 homepage    : https://openchamber.dev
 upstreams   :
-    - https://github.com/openchamber/openchamber/archive/refs/tags/v2.7.1.tar.gz : 289fdc92c1fcfd329eef02718577156a8fa23acc4b2eb024657aae4150e44bf7
+    - https://github.com/openchamber/openchamber/archive/refs/tags/v2.7.2.tar.gz : f8aa50a19811dfbefb441c5e6e98ad539f3603aae85489a6ff1f7b7b23315440
 description : |
     OpenChamber is a workspace for running, supervising and reviewing AI coding
     work, built on the OpenCode coding agent. It runs as a desktop app, in a
