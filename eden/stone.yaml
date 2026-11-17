@@ -5,9 +5,14 @@
 #
 name        : eden
 version     : "0.2.1"
-release     : 1
+release     : 2
 upstreams   :
     - git|https://git.eden-emu.dev/eden-emu/eden.git : b4e39d9ae412eebcc896759eedd58226d43a43c5 # v0.2.1
+    # Upstream's clang PGO profile, regenerated every few months at https://github.com/Eden-CI/PGO
+    - https://github.com/Eden-CI/PGO/releases/download/v020525/eden.profdata:
+        hash: 777dd9aefb9427ed08a642b02998f32c5ac120e5d32611d8f21cf1f4e68cee57
+        unpack: false
+        rename: eden-v020525.profdata
 summary     : Eden Nintendo Switch Emulator
 description : |
     A free and open source Switch 1 emulator derived from Yuzu and Sudachi.
@@ -50,6 +55,12 @@ rundeps     :
     - qt6-wayland
     # gamemode_client.h dlopens this at runtime
     - soname(libgamemode.so.0(x86_64))
+environment : |
+    # Same PGO flags as upstream's own builds (Eden-CI/Workflow .ci/build/targets.sh); the
+    # profile path is versioned so a profile bump also busts any ccache entry
+    pgo_flags="-fprofile-use=%(sourcedir)/eden-v020525.profdata -Wno-backend-plugin -Wno-profile-instr-unprofiled -Wno-profile-instr-out-of-date"
+    export CFLAGS+=" ${pgo_flags}"
+    export CXXFLAGS+=" ${pgo_flags}"
 setup       : |
     # boulder's shallow clone cannot git describe, so pin the build version
     printf 'v%(version)' > GIT-TAG
