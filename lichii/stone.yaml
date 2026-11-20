@@ -1,0 +1,86 @@
+#
+# SPDX-FileCopyrightText: 2026 aerynOS Developers
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+name        : lichii
+version     : "0~git.5929f95"
+release     : 2
+summary     : Experimental Nintendo Switch and Switch 2 emulator
+description : |
+    Lichii is an experimental Nintendo Switch and Switch 2 emulator forked from
+    Eglantine and Eden, with work inherited from yuzu and Sudachi.
+license     : GPL-3.0-or-later
+homepage    : https://github.com/zortos293/Lichii
+upstreams   :
+    - git|https://github.com/zortos293/Lichii.git : 5929f95d7d8d5a2d26906d4efb72f96e90c64e5f # nx2, after build-341
+# CPM fetches the externals aerynOS does not package (enet, cubeb, quazip, sirit, ...)
+networking  : true
+environment : |
+    # Upstream's release profile, trained on Ocarina of Time with the clang version we ship
+    pgo_flags="-fprofile-use=%(workdir)/eglantine.profdata -Wno-backend-plugin -Wno-profile-instr-unprofiled -Wno-profile-instr-out-of-date"
+    export CFLAGS+=" ${pgo_flags}"
+    export CXXFLAGS+=" ${pgo_flags}"
+builddeps   :
+    - binary(glslangValidator)
+    - binary(patch)
+    - cmake(Boost)
+    - cmake(Qt6Concurrent)
+    - cmake(Qt6Core)
+    - cmake(Qt6DBus)
+    - cmake(Qt6Gui)
+    - cmake(Qt6GuiPrivate)
+    - cmake(Qt6Network)
+    - cmake(Qt6Widgets)
+    - cmake(SDL3)
+    - cmake(SPIRV-Tools)
+    - cmake(VulkanHeaders)
+    - cmake(VulkanUtilityLibraries)
+    - pkgconfig(alsa)
+    - pkgconfig(fmt)
+    - pkgconfig(gamemode)
+    - pkgconfig(jack)
+    - pkgconfig(libavcodec)
+    - pkgconfig(libavfilter)
+    - pkgconfig(libavutil)
+    - pkgconfig(liblz4)
+    - pkgconfig(libpulse)
+    - pkgconfig(libswscale)
+    - pkgconfig(libusb-1.0)
+    - pkgconfig(libzstd)
+    - pkgconfig(nlohmann_json)
+    - pkgconfig(openssl)
+    - pkgconfig(opus)
+    - pkgconfig(x11)
+    - pkgconfig(zlib)
+rundeps     :
+    - qt6-wayland
+    # gamemode_client.h dlopens this at runtime
+    - soname(libgamemode.so.0(x86_64))
+setup       : |
+    %cmake -G Ninja \
+        -DBUILD_TESTING=OFF \
+        -DENABLE_UPDATE_CHECKER=OFF \
+        -DENABLE_WERROR=OFF \
+        -DENABLE_WEB_SERVICE=OFF \
+        -DLICHII_CMD=OFF \
+        -DLICHII_ROOM=OFF \
+        -DLICHII_ROOM_STANDALONE=OFF \
+        -DLICHII_TESTS=OFF \
+        -DLICHII_USE_BUNDLED_QT=OFF \
+        -DUSE_DISCORD_PRESENCE=OFF
+build       : |
+    %cmake_build
+install     : |
+    %cmake_install
+
+    # Read by the GUI from the directory of the executable
+    %install_file %(workdir)/dist/nx2_switches.txt -t %(installroot)%(bindir)
+packages    :
+    - "%(name)":
+        provides-exclude:
+            # Settings file the GUI reads next to its executable, not a program
+            - 'binary\(nx2_switches\.txt\)'
+# dynarmic/xbyak are ODR-sensitive, LTO corrupts the JIT backend
+tuning      :
+    - lto: false

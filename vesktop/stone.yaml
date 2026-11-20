@@ -4,14 +4,14 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : vesktop
-version     : "1.6.9"
-release     : 6
+version     : "1.7.0"
+release     : 7
 summary     : Vesktop
 license     : Distributable
 homepage    : https://vesktop.vencord.dev
 upstreams   :
-    - https://github.com/Vencord/Vesktop/releases/download/v1.6.9/vesktop-1.6.9.tar.gz:
-        hash: c9eabe5e0a6dc1ee3f48a32f9b876ecbf938738fef1a76bc2350eb82f3bc8517
+    - https://github.com/Vencord/Vesktop/releases/download/v1.7.0/vesktop-1.7.0.tar.gz:
+        hash: 9ad00f48ad344ee1d4f01aa7d4f44afb27836a574d13291f279d866055377705
 description : |
     Vesktop
 builddeps   :

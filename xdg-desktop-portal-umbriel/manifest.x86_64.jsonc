@@ -4,36 +4,53 @@
 	"packages": {
 		"xdg-desktop-portal-umbriel": {
 			"build-depends": [
+				"binary(wayland-scanner)",
 				"pkgconfig(cairo)",
+				"pkgconfig(cairo-ft)",
+				"pkgconfig(egl)",
+				"pkgconfig(fontconfig)",
+				"pkgconfig(freetype2)",
 				"pkgconfig(gbm)",
-				"pkgconfig(gio-2.0)",
-				"pkgconfig(gtk4)",
+				"pkgconfig(glesv2)",
+				"pkgconfig(harfbuzz)",
 				"pkgconfig(libdrm)",
 				"pkgconfig(libei-1.0)",
 				"pkgconfig(libpipewire-0.3)",
 				"pkgconfig(nlohmann_json)",
+				"pkgconfig(pango)",
+				"pkgconfig(pangoft2)",
 				"pkgconfig(sdbus-c++)",
 				"pkgconfig(tomlplusplus)",
 				"pkgconfig(wayland-client)",
-				"pkgconfig(wayland-protocols)"
+				"pkgconfig(wayland-egl)",
+				"pkgconfig(wayland-protocols)",
+				"pkgconfig(xkbcommon)",
+				"stb"
 			],
 			"depends": [
 				"interpreter(/usr/lib/ld-linux-x86-64.so.2(x86_64))",
+				"soname(libEGL.so.1(x86_64))",
+				"soname(libGLESv2.so.2(x86_64))",
 				"soname(libc.so.6(x86_64))",
 				"soname(libcairo.so.2(x86_64))",
 				"soname(libdrm.so.2(x86_64))",
+				"soname(libfontconfig.so.1(x86_64))",
+				"soname(libfreetype.so.6(x86_64))",
 				"soname(libgbm.so.1(x86_64))",
 				"soname(libgcc_s.so.1(x86_64))",
-				"soname(libgio-2.0.so.0(x86_64))",
-				"soname(libglib-2.0.so.0(x86_64))",
 				"soname(libgobject-2.0.so.0(x86_64))",
-				"soname(libgtk-4.so.1(x86_64))",
+				"soname(libharfbuzz.so.0(x86_64))",
 				"soname(libm.so.6(x86_64))",
+				"soname(libpango-1.0.so.0(x86_64))",
+				"soname(libpangocairo-1.0.so.0(x86_64))",
+				"soname(libpangoft2-1.0.so.0(x86_64))",
 				"soname(libpipewire-0.3.so.0(x86_64))",
 				"soname(libsdbus-c++.so.2(x86_64))",
 				"soname(libstdc++.so.6(x86_64))",
 				"soname(libtomlplusplus.so.3(x86_64))",
 				"soname(libwayland-client.so.0(x86_64))",
+				"soname(libwayland-egl.so.1(x86_64))",
+				"soname(libxkbcommon.so.0(x86_64))",
 				"xdg-desktop-portal",
 				"xdg-desktop-portal-gtk"
 			],
@@ -42,6 +59,9 @@
 				"/usr/lib/xdg-desktop-portal-umbriel/umbriel-share-picker",
 				"/usr/lib/xdg-desktop-portal-umbriel/xdg-desktop-portal-umbriel",
 				"/usr/share/dbus-1/services/org.freedesktop.impl.portal.desktop.umbriel.service",
+				"/usr/share/xdg-desktop-portal-umbriel/assets/fonts/noctalia-tabler.ttf",
+				"/usr/share/xdg-desktop-portal-umbriel/assets/fonts/tabler-icons-license.txt",
+				"/usr/share/xdg-desktop-portal-umbriel/assets/fonts/tabler.json",
 				"/usr/share/xdg-desktop-portal/portals/umbriel.portal",
 				"/usr/share/xdg-desktop-portal/umbriel-portals.conf"
 			],
@@ -49,6 +69,6 @@
 		}
 	},
 	"source-name": "xdg-desktop-portal-umbriel",
-	"source-release": "3",
-	"source-version": "0~git.116e9485"
+	"source-release": "4",
+	"source-version": "0~git.62030bb9"
 }

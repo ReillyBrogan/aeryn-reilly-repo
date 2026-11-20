@@ -4,13 +4,13 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : openchamber-desktop
-version     : "2.7.2"
-release     : 10
+version     : "2.7.3"
+release     : 11
 summary     : OpenChamber desktop client
 license     : MIT
 homepage    : https://openchamber.dev
 upstreams   :
-    - https://github.com/openchamber/openchamber/archive/refs/tags/v2.7.2.tar.gz : f8aa50a19811dfbefb441c5e6e98ad539f3603aae85489a6ff1f7b7b23315440
+    - https://github.com/openchamber/openchamber/archive/refs/tags/v2.7.3.tar.gz : 830ff3866a8733ff13a5a2565fa78d967c3eab317f661146021ffa70ae68e156
 description : |
     OpenChamber is a workspace for running, supervising and reviewing AI coding
     work, built on the OpenCode coding agent. It runs as a desktop app, in a
@@ -34,9 +34,6 @@ rundeps     :
     - opencode
     - soname(libXss.so.1(x86_64))
     - soname(libXtst.so.6(x86_64))
-# Electron and the bundled OpenCode CLI must not be stripped or debug-split
-debug       : false
-strip       : false
 environment : |
     # Bun is not packaged, so provision it from npm into the build tree and put
     # it on PATH for the root postinstall and the build scripts.
@@ -51,7 +48,7 @@ build       : |
     cd packages/electron
 
     bun run build:web-assets
-    bun run prepare:opencode-cli
+    bun run prepare:opencode-server
     bun run bundle:main
     bun run rebuild:native
 
@@ -71,20 +68,10 @@ install     : |
     # The bundled self updater cannot work from a packaged install
     rm -f %(installroot)$openchamberdir/resources/app-update.yml
 
-    # Foreign-platform native prebuilds are dead weight and add sonames for
-    # architectures moss cannot resolve, so keep only linux-x64
-    natives=%(installroot)$openchamberdir/resources/app.asar.unpacked/node_modules
-    rm -rf $natives/node-pty/prebuilds/darwin-* \
-        $natives/node-pty/prebuilds/linux-arm64 \
-        $natives/node-pty/prebuilds/win32-*
-    rm -f $natives/bun-pty/rust-pty/target/release/librust_pty_arm64.* \
-        $natives/bun-pty/rust-pty/target/release/librust_pty.dylib \
-        $natives/@msgpackr-extract/msgpackr-extract-linux-x64/node.*.musl.node
-
-    # Use the packaged OpenCode CLI instead of the bundled ~210 MB copy.
-    # OpenChamber resolves <resources>/opencode-cli/opencode before anything on
-    # PATH, and treats it as its own (so it does not try to self-update it).
-    ln -sf /usr/bin/opencode %(installroot)$openchamberdir/resources/opencode-cli/opencode
+    # Use the packaged OpenCode CLI instead of the bundled ~9 MB server copy.
+    # Without it the app falls back to `opencode` on PATH, which is what the
+    # installed package uses.
+    rm -rf %(installroot)$openchamberdir/resources/opencode-server
 
     # Use the system ripgrep instead of a bundled copy
     %install_dir %(installroot)$openchamberdir/resources/ripgrep

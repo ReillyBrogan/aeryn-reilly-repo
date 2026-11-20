@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: MPL-2.0
 
 releases:
-  id: 15525
+  id: ~ # Untagged upstream; the recipe tracks main
   rss: ~
 security:
-  # Last checked 20250525
+  # No known CPE, last checked 2026-11-20
   cpe: ~

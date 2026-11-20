@@ -1,7 +1,6 @@
 releases:
-  id: 21076
-  rss: ~
+  id: ~ # No Anitya project; the GitHub releases feed is authoritative
+  rss: https://github.com/dagger/dagger/releases.atom
 security:
-  cpe:
-  - vendor: docker
-    product: docker
+  # No CPE found, last checked 2026-11-20
+  cpe: ~

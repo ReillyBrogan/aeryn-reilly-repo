@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: 2026 aerynOS Developers
+#
+# SPDX-License-Identifier: MPL-2.0
+
+releases:
+  id: ~
+  rss: https://github.com/zortos293/Lichii/releases.atom
+security:
+  # No CPE found, last checked 2026-11-18
+  cpe: ~

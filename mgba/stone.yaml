@@ -5,9 +5,9 @@
 #
 name        : mgba
 version     : 0.11.0
-release     : 2
+release     : 3
 upstreams   :
-    - git|https://github.com/mgba-emu/mgba.git : 662dada8b79070bde93829a44d583c517fc5ec2d
+    - git|https://github.com/mgba-emu/mgba.git : e6c17152dec0caaebd8a4b949c96a24d56debf44
 summary     : mGBA Game Boy Advance Emulator
 description : |
     mGBA Game Boy Advance Emulator
@@ -37,8 +37,6 @@ builddeps   :
 rundeps     :
     - qt6-wayland
 setup       : |
-    %patch %(pkgdir)/0001-test.patch
-
     %cmake
 build       : |
     %cmake_build

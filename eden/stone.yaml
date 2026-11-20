@@ -5,9 +5,9 @@
 #
 name        : eden
 version     : "0.2.1"
-release     : 2
+release     : 3
 upstreams   :
-    - git|https://git.eden-emu.dev/eden-emu/eden.git : b4e39d9ae412eebcc896759eedd58226d43a43c5 # v0.2.1
+    - git|https://git.eden-emu.dev/eden-emu/eden.git : 323288c0d207e5fb8f640b6a0595827855876310 # post-v0.2.1 master
     # Upstream's clang PGO profile, regenerated every few months at https://github.com/Eden-CI/PGO
     - https://github.com/Eden-CI/PGO/releases/download/v020525/eden.profdata:
         hash: 777dd9aefb9427ed08a642b02998f32c5ac120e5d32611d8f21cf1f4e68cee57

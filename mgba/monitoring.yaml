@@ -1,0 +1,6 @@
+releases:
+  id: 141675
+  rss: ~
+security:
+  # No CPE found, last checked 2026-11-20
+  cpe: ~

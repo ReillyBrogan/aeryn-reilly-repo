@@ -4,11 +4,11 @@
 # SPDX-License-Identifier: MPL-2.0
 #
 name        : zapfast
-version     : "0.21.1"
-release     : 1
+version     : "0.21.3"
+release     : 2
 homepage    : https://zapfast.rocks
 upstreams   :
-    - https://github.com/crmne/zapfast/archive/refs/tags/v0.21.1.tar.gz : 39437cdb259aa6576d19172e2b3e98a524619923497e4751cb0282e86bf54338
+    - https://github.com/crmne/zapfast/archive/refs/tags/v0.21.3.tar.gz : 20f0a2cb1d05f910f0a3f5b8db15dfe65c8d50cb7d208fd7bb4cbf0fa8029d71
 summary     : Fast native WhatsApp client
 description : |
     ZapFast is a native WhatsApp client for the desktop, written in Rust with egui. It has no browser engine, links to your phone as a companion device, and keeps your chats in an encrypted local archive.

@@ -2,28 +2,38 @@
 # SPDX-License-Identifier: MPL-2.0
 
 name        : xdg-desktop-portal-umbriel
-version     : "0~git.116e9485"
-release     : 3
+version     : "0~git.62030bb9"
+release     : 4
 upstreams   :
-    - git|https://github.com/noctalia-dev/xdg-desktop-portal-umbriel.git : 116e9485b39552a39e4e6088ff7cbe50e7504829
+    - git|https://github.com/noctalia-dev/xdg-desktop-portal-umbriel.git : 62030bb90784229f6fdc8b15bbb03bcd28867488
 homepage    : https://noctalia.dev/
 license     : MIT
 summary     : XDG Desktop Portal for Umbriel
 description : |
     An xdg-desktop-portal backend for the Umbriel compositor
 builddeps   :
+    - binary(wayland-scanner)
     - pkgconfig(cairo)
+    - pkgconfig(cairo-ft)
+    - pkgconfig(egl)
+    - pkgconfig(fontconfig)
+    - pkgconfig(freetype2)
     - pkgconfig(gbm)
-    - pkgconfig(gio-2.0)
-    - pkgconfig(gtk4)
+    - pkgconfig(glesv2)
+    - pkgconfig(harfbuzz)
     - pkgconfig(libdrm)
     - pkgconfig(libei-1.0)
     - pkgconfig(libpipewire-0.3)
     - pkgconfig(nlohmann_json)
+    - pkgconfig(pango)
+    - pkgconfig(pangoft2)
     - pkgconfig(sdbus-c++)
     - pkgconfig(tomlplusplus)
     - pkgconfig(wayland-client)
+    - pkgconfig(wayland-egl)
     - pkgconfig(wayland-protocols)
+    - pkgconfig(xkbcommon)
+    - stb
 rundeps     :
     - xdg-desktop-portal
     - xdg-desktop-portal-gtk
