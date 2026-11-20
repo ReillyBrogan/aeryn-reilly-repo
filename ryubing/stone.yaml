@@ -1,0 +1,82 @@
+#
+# SPDX-FileCopyrightText: 2026 aerynOS Developers
+#
+# SPDX-License-Identifier: MPL-2.0
+#
+name        : ryubing
+version     : "1.3.354"
+release     : 1
+summary     : Ryujinx Nintendo Switch emulator (canary channel)
+description : |
+    Ryubing is a fork of the Ryujinx Nintendo Switch emulator, rebuilt from the
+    canary channel. It is written in C# and uses Avalonia for its user interface.
+license     : MIT
+homepage    : https://ryujinx.app/
+upstreams   :
+    - https://git.ryujinx.app/projects/Ryubing/archive/Canary-1.3.354.tar.gz : 04275dd6b198ed4b930e149d8dcb05d368ef660ea8379fafbbb6faae0d935d6f
+    # aerynOS does not package .NET, so the SDK global.json asks for comes in as a source
+    - https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.404/dotnet-sdk-10.0.404-linux-x64.tar.gz:
+        hash: c0610757a818fde4b960d27a0ac421f273068a05dc5ec7abafc01dbf84e9cb4d
+        unpack: false
+        rename: dotnet-sdk.tar.gz
+# NuGet restore
+networking  : true
+builddeps   :
+    - binary(bsdtar-static)
+    # the SDK dlopens ICU and OpenSSL
+    - pkgconfig(icu-i18n)
+    - pkgconfig(openssl)
+rundeps     :
+    # libX11/libwayland-client are dlopened by the bundled SDL3 and Avalonia;
+    # OpenAL backs audio and Vulkan the graphics backend
+    - soname(libX11.so.6(x86_64))
+    - soname(libopenal.so.1(x86_64))
+    - soname(libvulkan.so.1(x86_64))
+    - soname(libwayland-client.so.0(x86_64))
+# The published app is a self-contained, single-file dotnet bundle
+debug       : false
+strip       : false
+environment : |
+    export DOTNET_CLI_HOME="%(sourcedir)/.dotnet-home"
+    export DOTNET_CLI_TELEMETRY_OPTOUT=1
+    export DOTNET_NOLOGO=1
+    export DOTNET_ROOT="%(sourcedir)/.dotnet"
+    export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
+    export NUGET_PACKAGES="%(sourcedir)/.nuget"
+    export PATH="$DOTNET_ROOT:$PATH"
+setup       : |
+    mkdir -p "$DOTNET_ROOT"
+    bsdtar-static --no-same-owner -xf %(sourcedir)/dotnet-sdk.tar.gz -C "$DOTNET_ROOT"
+
+    dotnet --version
+build       : |
+    dotnet publish \
+        --disable-build-servers \
+        --nologo \
+        --self-contained \
+        -c Release \
+        -o publish \
+        -p:DebugType=none \
+        -p:ExtraDefineConstants=DISABLE_UPDATER \
+        -p:RuntimeIdentifiers=linux-x64 \
+        -p:Version=%(version) \
+        -r linux-x64 \
+        src/Ryujinx
+install     : |
+    %install_dir %(installroot)%(libdir)/%(name)
+    cp -a publish/. %(installroot)%(libdir)/%(name)/
+
+    # Ryujinx.sh resolves its own directory, so the symlink lands on the real one
+    %install_dir %(installroot)%(bindir)
+    ln -s ../lib/%(name)/Ryujinx.sh %(installroot)%(bindir)/%(name)
+
+    # %% escapes boulder's macro sigil so the desktop field code survives
+    sed -e '/^Version=1.5$/d' \
+        -e 's|^Exec=Ryujinx.sh %%f$|Exec=%(name) %%f|' \
+        distribution/linux/app.ryujinx.Ryujinx.desktop |
+        %install_file /dev/stdin %(installroot)%(datadir)/applications/app.ryujinx.Ryujinx.desktop
+    %install_file distribution/misc/Logo.png %(installroot)%(datadir)/icons/hicolor/256x256/apps/app.ryujinx.Ryujinx.png
+    %install_file distribution/linux/mime/Ryujinx.xml %(installroot)%(datadir)/mime/packages/app.ryujinx.Ryujinx.xml
+
+    %install_file LICENSE.txt -t %(installroot)%(datadir)/licenses/%(name)
+    %install_file publish/THIRDPARTY.md -t %(installroot)%(datadir)/licenses/%(name)

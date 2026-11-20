@@ -1,0 +1,64 @@
+/** Human readable report. This is not consumed by boulder */
+{
+	"manifest-version": "0.2",
+	"packages": {
+		"ryubing": {
+			"build-depends": [
+				"binary(bsdtar-static)",
+				"pkgconfig(icu-i18n)",
+				"pkgconfig(openssl)"
+			],
+			"depends": [
+				"interpreter(/lib64/ld-linux-x86-64.so.2(x86_64))",
+				"soname(ld-linux-x86-64.so.2(x86_64))",
+				"soname(libX11.so.6(x86_64))",
+				"soname(libasound.so.2(x86_64))",
+				"soname(libc.so.6(x86_64))",
+				"soname(libdl.so.2(x86_64))",
+				"soname(libfontconfig.so.1(x86_64))",
+				"soname(libgcc_s.so.1(x86_64))",
+				"soname(libjack.so.0(x86_64))",
+				"soname(libm.so.6(x86_64))",
+				"soname(libopenal.so.1(x86_64))",
+				"soname(libpthread.so.0(x86_64))",
+				"soname(libpulse.so.0(x86_64))",
+				"soname(librt.so.1(x86_64))",
+				"soname(libstdc++.so.6(x86_64))",
+				"soname(libvulkan.so.1(x86_64))",
+				"soname(libwayland-client.so.0(x86_64))"
+			],
+			"files": [
+				"/usr/bin/ryubing",
+				"/usr/lib/ryubing/LICENSE.txt",
+				"/usr/lib/ryubing/Ryujinx",
+				"/usr/lib/ryubing/Ryujinx.sh",
+				"/usr/lib/ryubing/THIRDPARTY.md",
+				"/usr/lib/ryubing/libHarfBuzzSharp.so",
+				"/usr/lib/ryubing/libSDL3.so",
+				"/usr/lib/ryubing/libSkiaSharp.so",
+				"/usr/lib/ryubing/libavcodec.so.60",
+				"/usr/lib/ryubing/libavutil.so.58",
+				"/usr/lib/ryubing/libsoundio.so",
+				"/usr/lib/ryubing/mime/Ryujinx.xml",
+				"/usr/share/applications/app.ryujinx.Ryujinx.desktop",
+				"/usr/share/icons/hicolor/256x256/apps/app.ryujinx.Ryujinx.png",
+				"/usr/share/licenses/ryubing/LICENSE.txt",
+				"/usr/share/licenses/ryubing/THIRDPARTY.md",
+				"/usr/share/mime/packages/app.ryujinx.Ryujinx.xml"
+			],
+			"name": "ryubing",
+			"provides": [
+				"binary(ryubing)",
+				"soname(ryubing/libHarfBuzzSharp.so.0.60831.0(x86_64))",
+				"soname(ryubing/libSDL3.so.0(x86_64))",
+				"soname(ryubing/libSkiaSharp.so.119.0.0(x86_64))",
+				"soname(ryubing/libavcodec.so.60(x86_64))",
+				"soname(ryubing/libavutil.so.58(x86_64))",
+				"soname(ryubing/libsoundio.so.1(x86_64))"
+			]
+		}
+	},
+	"source-name": "ryubing",
+	"source-release": "1",
+	"source-version": "1.3.354"
+}

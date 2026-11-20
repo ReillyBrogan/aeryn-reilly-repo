@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: 2026 aerynOS Developers
+#
+# SPDX-License-Identifier: MPL-2.0
+
+releases:
+  id: ~
+  rss: https://git.ryujinx.app/ryubing/canary/releases.rss
+security:
+  # No CPE found, last checked 2026-11-16
+  cpe: ~
